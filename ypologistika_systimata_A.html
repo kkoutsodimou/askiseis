@@ -131,7 +131,7 @@ homeEx(4,'Τι υπάρχει στο σπίτι σου;');
 pickEx(5,'Ποιο δεν είναι υπολογιστής; Πάτα το!',[O(['desk','lap','apple','tablet'],'apple'),O(['phone','ball','watch','tv'],'ball'),O(['robot','desk','bike','phone'],'bike'),O(['tv','lap','balloon','tablet'],'balloon')]);
 matchEx(6,'Τι κάνει; Ένωσε',[['phone','call'],['watch','clock'],['tv','movie'],['robot','broom'],['desk','game']],true);
 const SZ3=(k,w,big)=>({big:1,o:w.map(x=>({k,w:x,ok:x===Math.max(...w)}))});
-pickEx(7,'Πάτα τον πιο μεγάλο',[SZ3('desk',[44,84,62]),SZ3('phone',[84,44,64]),SZ3('tv',[62,84,44])]);
+pickEx(7,'Πάτα το πιο μεγάλο',[SZ3('desk',[44,84,62]),SZ3('phone',[84,44,64]),SZ3('tv',[62,84,44])]);
 pickEx(8,'Ποιο έρχεται μετά; Πάτα το',[{pre:['desk','lap','desk','lap'],o:shuffle([{k:'desk',ok:true},{k:'lap'}])},{pre:['phone','phone','watch','phone','phone'],o:shuffle([{k:'watch',ok:true},{k:'phone'}])},{pre:['tv','tv','robot','tv','tv'],o:shuffle([{k:'robot',ok:true},{k:'tv'}])}]);
 tapSet(9,'Οθόνη αφής 👆 Πάτα σε όσες έχουν',['tablet','phone','desk'],['tablet','phone'],3);
 colourEx(10,'Χρωμάτισε!');

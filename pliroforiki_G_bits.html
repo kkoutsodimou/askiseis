@@ -156,7 +156,7 @@ function colourEx(add,pattern,key,names,cols){
  Object.keys(key).sort().forEach(k=>{const s=el('button','sw',names[k]);s.style.background=cols[k];s.onclick=()=>{cur=cols[k];$$('.sw',pal).forEach(z=>z.classList.remove('on'));s.classList.add('on')};pal.appendChild(s)});q.appendChild(pal);
  const n=pattern[0].length;const g=el('div','gridw');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;g.style.maxWidth=n*66+'px';const cells=[];
  pattern.forEach(r=>r.forEach(d=>{const c=el('button','cell',d);c.d=d;c.onclick=()=>{if(cur){c.style.background=cur;c.c=cur}};cells.push(c);g.appendChild(c)}));q.appendChild(g);
- q.isOk=()=>cells.every(c=>c.c===cols[c.d]);return add(q)}
+ q.isOk=()=>cells.every(c=>(c.c||'#ffffff')===cols[c.d]);return add(q)}
 ex(8,'Τα χρώματα με 2 bits','Διάλεξε χρώμα και πάτα κάθε τετράγωνο με το χρώμα του κώδικά του.',(b,add)=>{
  colourEx(add,[['00','01','01','00'],['10','11','11','10'],['10','11','11','10'],['00','01','01','00']],{'00':1,'01':1,'10':1,'11':1},{'00':'άσπρο','01':'κίτρινο','10':'κόκκινο','11':'μπλε'},{'00':'#ffffff','01':'#fdd835','10':'#e53935','11':'#1e88e5'})});
 ex(9,'Φτιάχνω δικό μου pixel art','Πάτα τα τετράγωνα που θέλεις για να γίνουν μαύρα και σχεδίασε κάτι δικό σου. Από κάτω βγαίνει ο κώδικάς σου: 1 στα μαύρα και 0 στα άσπρα.',(b,add,fin)=>{

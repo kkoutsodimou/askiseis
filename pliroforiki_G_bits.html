@@ -1,0 +1,207 @@
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html{color-scheme:light}body{margin:0}</style><title>Bits, bytes και εικόνες</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+<style>
+:root{--bg:#f6fbf8;--fg:#1d2b3a;--muted:#5b6b7b;--mint:#d6f3e4;--mint2:#bfeacf;--mintb:#8fd3ae;--card:#ffffff;--accent:#2e5fa8;--ok:#1e9e57;--bad:#e4572e;--sel:#ffe9a8;--lilac:#ece4fa;--lilacb:#c4aeea;--lilacf:#3b2a6b;--orange:#ffe6cc;--orangeb:#f2b36d;--orangef:#6b3a07;--ink:#1d2b3a;--shadow:0 2px 8px rgba(30,60,50,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13201b;--fg:#e8f3ee;--muted:#a3b8ad;--mint:#1f3a2e;--mint2:#27493a;--mintb:#3f7a5e;--card:#1a2c25;--accent:#7fb0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#2f2748;--lilacb:#6f5aa8;--lilacf:#e6dcff;--orange:#4a3318;--orangeb:#a8742f;--orangef:#ffe2c2;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13201b;--fg:#e8f3ee;--muted:#a3b8ad;--mint:#1f3a2e;--mint2:#27493a;--mintb:#3f7a5e;--card:#1a2c25;--accent:#7fb0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#2f2748;--lilacb:#6f5aa8;--lilacf:#e6dcff;--orange:#4a3318;--orangeb:#a8742f;--orangef:#ffe2c2;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"Comfortaa","Comic Sans MS","Trebuchet MS",system-ui,sans-serif;font-size:17px;line-height:1.45;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:14px 16px;text-align:center}
+h1{margin:0;font-size:1.45rem;color:var(--accent);text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin-top:2px}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.who label{display:flex;gap:6px;align-items:center;font-size:.95rem}
+.who input{font:inherit;padding:6px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);min-width:0;width:min(220px,58vw)}
+.who input.cl{width:90px}
+.prog{margin-top:8px;font-size:1.05rem;min-height:1.6rem;letter-spacing:1px;word-break:break-all}
+.theory{background:var(--orange);border:3px solid var(--orangeb);border-radius:22px;padding:14px 16px;color:var(--orangef)}
+.theory h2{margin:0 0 6px;font-size:1.2rem}
+.theory p{margin:6px 0;font-size:.95rem}
+.ex{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:12px;box-shadow:var(--shadow)}
+.ex.done{border-color:var(--ok)}
+.hd{display:flex;gap:10px;align-items:center;margin-bottom:12px;background:var(--lilac);border:3px solid var(--lilacb);border-radius:18px;padding:8px 10px;color:var(--lilacf)}
+.num{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700}
+.tt{flex:1;min-width:0}
+.tt h2{margin:0;font-size:1.05rem;text-wrap:balance}
+.tt p{margin:3px 0 0;font-size:.88rem}
+.say{flex:none;border:0;background:var(--card);border-radius:50%;width:40px;height:40px;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow)}
+.badge{display:none;font-size:1.6rem}
+.ex.done .badge{display:block;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.4)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.shake{animation:shake .35s}
+.body{display:flex;flex-direction:column;gap:8px}
+.q{background:var(--card);border:3px solid transparent;border-radius:16px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:.95rem}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q .t{flex:1 1 200px;min-width:0}
+.btn{font:inherit;border:3px solid var(--mintb);background:var(--card);color:var(--fg);border-radius:14px;padding:5px 12px;cursor:pointer;min-width:44px;min-height:44px}
+.btn.sel{border-color:var(--accent);background:var(--sel)}
+.btn.m0{background:#ffd9d9;border-color:#e57373;color:#1d2b3a}.btn.m1{background:#d9e8ff;border-color:#6c9cf0;color:#1d2b3a}.btn.m2{background:#e6d9ff;border-color:#9b7be0;color:#1d2b3a}.btn.m3{background:#d9f5d9;border-color:#5cc06b;color:#1d2b3a}.btn.m4{background:#ffe9c7;border-color:#e9a100;color:#1d2b3a}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.q input{font:inherit;width:3.4em;text-align:center;padding:4px;border-radius:10px;border:2px solid var(--mintb);background:var(--card);color:var(--fg)}
+.q input.w{width:6.5em}
+.ft{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.msg{font-size:.9rem}
+.chk{background:var(--accent);color:#fff;border-color:var(--accent)}
+.gridw{display:grid;gap:3px;width:100%}
+.gridw.full{max-width:calc(var(--n)*46px)}
+.cell{font:inherit;font-weight:700;font-size:1rem;aspect-ratio:1;min-width:0;padding:0;border:2px solid var(--lilacb);border-radius:8px;background:#fff;color:#1d2b3a;cursor:pointer;display:grid;place-items:center}
+.cell.on{background:#222;color:#fff}
+.cell.gy{background:#b9c1d0}
+.cell.circ{border-radius:50%}
+.cdig{text-align:center;font-weight:700;font-size:1.05rem}
+.side{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;width:100%}
+.side>.gridw{flex:0 0 auto;width:min(100%,calc(var(--n)*44px))}
+.side .txt{flex:1 1 180px;min-width:0;font-size:.92rem}
+.pal{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.sw{min-height:42px;padding:3px 10px;border-radius:21px;border:3px solid #9aa5b8;cursor:pointer;font:inherit;font-size:.78rem;font-weight:700;color:#1d2b3a}
+.sw.on{outline:3px solid var(--fg)}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;width:100%}.mt .col{display:flex;flex-direction:column;gap:8px}
+.mt .btn{font-size:.85rem;font-weight:700;min-height:52px}
+.code{font-size:.8rem;letter-spacing:2px;line-height:1.6;color:var(--muted)}
+.fin{text-align:center;font-size:1.4rem;display:none}.fin.on{display:block}
+@media(max-width:420px){body{font-size:15.5px}}
+</style>
+<div class="wrap">
+<header>
+ <h1>Bits, bytes και εικόνες: ο κόσμος του 0 και του 1</h1>
+ <div class="sub">Πληροφορική Γ΄ Δημοτικού</div>
+ <div class="who"><label>Όνομα: <input id="nm" autocomplete="off"></label><label>Τμήμα: <input id="cl" class="cl" autocomplete="off"></label></div>
+ <div class="prog" id="prog" aria-live="polite"></div>
+ <button class="btn" id="fs" hidden>⛶ Πλήρης οθόνη</button>
+</header>
+<section class="theory">
+ <h2>💡 Θυμάμαι</h2>
+ <p><b>Bit:</b> κάθε 0 ή 1 στον δυαδικό κώδικα λέγεται bit. Είναι σαν έναν μικρό διακόπτη: το 1 είναι αναμμένο (ON) και το 0 σβηστό (OFF).</p>
+ <p><b>Byte:</b> μια ομάδα από 8 bits. Με τα bytes ο υπολογιστής γράφει γράμματα, αριθμούς και χρώματα. Όταν πληκτρολογούμε, τα γράμματα γίνονται σειρά από bytes που αποθηκεύονται στη μνήμη ή στέλνονται σε άλλους υπολογιστές.</p>
+ <p><b>Εικόνες:</b> μια εικόνα είναι σαν παζλ από μικροσκοπικά τετράγωνα, τα <b>pixel</b>. Με 1 bit έχουμε 2 χρώματα (στις ασκήσεις μας: 0 = άσπρο, 1 = μαύρο). Με 2 bits έχουμε 4 συνδυασμούς: 00, 01, 10, 11, δηλαδή 4 χρώματα. Όσο περισσότερα bits, τόσο πιο πολύχρωμη η εικόνα.</p>
+</section>
+<main id="exs" class="wrap"></main>
+<div class="fin" id="fin">🎉 Μπράβο! Τα κατάφερες! 🎉</div>
+</div>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const shk=e=>{e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')};
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='el-GR';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+const TOTAL=18,doneSet=new Set(),COL=['#2e5fa8','#e4572e','#7a5cc8','#2e9e5b','#e9a100'];
+function upd(){$('#prog').textContent='⭐'.repeat(doneSet.size)+'☆'.repeat(TOTAL-doneSet.size);$('#fin').classList.toggle('on',doneSet.size===TOTAL)}
+upd();
+function ex(n,title,instr,build){
+ const s=el('section','ex');s.id='e'+n;
+ s.innerHTML=`<div class="hd"><div class="num" style="background:${COL[(n-1)%5]}">${n}</div><div class="tt"><h2>${title}</h2>${instr?`<p>${instr}</p>`:''}</div><span class="badge">⭐</span><button class="say" aria-label="Άκουσε">🔊</button></div><div class="body"></div><div class="ft"><button class="btn chk">Έλεγξε ✔</button><span class="msg"></span></div>`;
+ $('#exs').appendChild(s);
+ const b=$('.body',s),qs=[],msg=$('.msg',s);
+ const fin=()=>{if(doneSet.has(n))return;doneSet.add(n);s.classList.add('done');msg.textContent='🎉 Μπράβο!';upd()};
+ $('.say',s).onclick=()=>say(title+'. '+(instr||'').replace(/<[^>]+>/g,''));
+ build(b,q=>{qs.push(q);b.appendChild(q);q.addEventListener('input',()=>q.classList.remove('ok','bad'));q.addEventListener('click',()=>q.classList.remove('ok','bad'));return q},fin);
+ $('.chk',s).onclick=()=>{let all=true;qs.forEach(q=>{const ok=q.isOk();q.classList.toggle('ok',ok);q.classList.toggle('bad',!ok);if(!ok){all=false;shk(q)}});if(all)fin();else msg.textContent='Κοίτα ξανά τα κόκκινα πλαίσια 🙂'};
+}
+const norm=v=>v.trim().toLowerCase().replace(/[“”"]/g,'');
+function choiceQ(add,text,opts,correct){
+ const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);q.val=null;
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{$$('.btn',o).forEach(z=>z.classList.remove('sel'));b.classList.add('sel');q.val=x};o.appendChild(b)});
+ q.isOk=()=>q.val===correct;return add(q)}
+function fillQ(add,html){ // [[ans|alt]] -> input
+ const q=el('div','q');q.innerHTML='<div class="t">'+html.replace(/\[\[(.+?)\]\]/g,(m,a)=>`<input data-a="${a}" inputmode="${/^\d+$/.test(a)?'numeric':'text'}" autocomplete="off"${/^\d+$/.test(a)?'':' class="w"'}>`)+'</div>';
+ q.isOk=()=>$$('input',q).every(i=>i.dataset.a.split('|').includes(norm(i.value)));return add(q)}
+function cyc(c){c.onclick=()=>{c.v=c.v===''?'0':c.v==='0'?'1':'';c.textContent=c.v}}
+function cellsQ(add,pre,n,pred){ // row/grid of cycle cells
+ const q=el('div','q');if(pre)q.appendChild(el('div','t',pre));
+ const g=el('div','gridw full');g.style.setProperty('--n',8);g.style.gridTemplateColumns='repeat(8,1fr)';
+ for(let i=0;i<8;i++){const c=el('button','cell','');c.v='';cyc(c);g.appendChild(c)}q.appendChild(g);
+ q.isOk=()=>pred($$('.cell',g).map(c=>c.v));return add(q)}
+function digitsRow(s,circ){const g=el('div','gridw full');g.style.setProperty('--n',s.length);g.style.gridTemplateColumns=`repeat(${s.length},1fr)`;[...s].forEach(d=>{const c=el(circ?'div':'div','cdig',d);g.appendChild(c)});return g}
+function paintQ(add,pattern,circ){ // click to blacken cells under/over the digits
+ const q=el('div','q');const rows=pattern;const n=rows[0].length;
+ const g=el('div','gridw full');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];
+ rows.forEach(r=>[...r].forEach(d=>{if(circ){const w=el('div','cdig',d);g.appendChild(w)}else{}}));
+ if(circ){const g2=el('div','gridw full');g2.style.setProperty('--n',n);g2.style.gridTemplateColumns=`repeat(${n},1fr)`;[...rows[0]].forEach(d=>{const c=el('button','cell circ','');c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g2.appendChild(c)});q.append(g,g2)}
+ else{rows.forEach(r=>[...r].forEach(d=>{const c=el('button','cell',d);c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g.appendChild(c)}));g.innerHTML='';cells.forEach(c=>g.appendChild(c));q.appendChild(g)}
+ q.isOk=()=>cells.every(c=>c.classList.contains('on')===(c.d==='1'));q.cells=cells;return add(q)}
+function codeGridQ(add,pattern){ // grey cells => write 0/1
+ const q=el('div','q');const n=pattern[0].length;const g=el('div','gridw');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];pattern.forEach(r=>[...r].forEach(d=>{const c=el('button','cell'+(d==='1'?' gy':''),'');c.v='';c.d=d;cyc(c);cells.push(c);g.appendChild(c)}));
+ q.appendChild(g);q.isOk=()=>cells.every(c=>c.v===c.d);q.grid=g;return q}
+function sideQ(add,grid,txt){const q=el('div','q');const s=el('div','side');grid.classList.add('full');s.append(grid,el('div','txt',txt));q.appendChild(s);return q}
+// ---------- exercises ----------
+ex(1,'Ο διακόπτης bit: γράφω 0 ή 1','Πάτα το 0 ή το 1.',(b,add)=>{
+ [['Το φως είναι αναμμένο (ON).','1'],['Το φως είναι σβηστό (OFF).','0'],['Ο διακόπτης είναι ενεργοποιημένος.','1'],['Ο διακόπτης είναι απενεργοποιημένος.','0']].forEach(([t,a],i)=>choiceQ(add,(i+1)+'. '+t+' → γράφω',['0','1'],a))});
+ex(2,'Ένα byte έχει 8 bits','Πάτα τον κύκλο κάτω από κάθε 1 για να γίνει μαύρος. Άφησε άσπρο όπου υπάρχει 0.',(b,add)=>{
+ paintQ(add,['00110101'],true);
+ fillQ(add,'Πόσα bits έχει ένα byte; [[8]] &nbsp; Πόσα “1” έχει αυτό το byte; [[4]]')});
+ex(3,'Σωστό (Σ) ή Λάθος (Λ);','Διάλεξε Σ ή Λ.',(b,add)=>{
+ [['Το bit είναι 0 ή 1.','Σ'],['Ένα byte έχει 4 bits.','Λ'],['Με ένα μόνο bit μπορούμε να φτιάξουμε 4 χρώματα.','Λ'],['Τα γράμματα που πληκτρολογούμε γίνονται bytes.','Σ']].forEach(([t,a],i)=>choiceQ(add,(i+1)+'. '+t,['Σ','Λ'],a))});
+ex(4,'Συμπληρώνω','Λέξεις: <b>8 • 4 • pixel</b>',(b,add)=>{
+ fillQ(add,'1. Ένα byte είναι μια ομάδα από [[8]] bits.');
+ fillQ(add,'2. Με δύο bits έχουμε [[4]] συνδυασμούς: 00, [[01]], [[10]], [[11]]');
+ fillQ(add,'3. Κάθε μικροσκοπικό τετράγωνο μιας εικόνας λέγεται [[pixel]].')});
+ex(5,'Bit ή byte;','Διάλεξε τη σωστή λέξη.',(b,add)=>{
+ [['μια ομάδα από 8 ψηφία','byte'],['το 0 ή το 1','bit'],['ένας μικροσκοπικός διακόπτης ON/OFF','bit'],['ο συνδυασμός 00110101','byte'],['μπορεί να παριστάνει ένα γράμμα','byte']].forEach(([t,a])=>choiceQ(add,t,['bit','byte'],a))});
+const pic=(add,txt,opts,ok)=>choiceQ(add,txt,shuffle(opts),ok);
+ex(6,'Χρωματίζω την εικόνα','Πάτα μαύρο κάθε τετράγωνο με 1. Άφησε άσπρα τα τετράγωνα με 0.',(b,add)=>{
+ const q=paintQ(x=>x, ['01100110','11111111','11111111','11111111','01111110','00111100','00011000','00000000']);add(q);
+ pic(add,'<b>Τι εικόνα βγήκε;</b>',['καρδιά','σπίτι','αστέρι','λουλούδι'],'καρδιά')});
+ex(7,'Γράφω τον κώδικα','Τα γκρι τετράγωνα είναι μαύρα (1) και τα άσπρα είναι 0. Πάτα κάθε τετράγωνο: 0 ή 1.',(b,add)=>{
+ const q=codeGridQ(add,['001100','011110','111111','001100','001100','001100']);q.grid.style.setProperty('--n',6);add(q);
+ pic(add,'<b>Τι εικόνα είναι;</b>',['δέντρο','σπίτι','καρδιά','ψάρι'],'δέντρο')});
+function colourEx(add,pattern,key,names,cols){
+ const q=el('div','q');const leg=el('div','t','<b>Κλειδί:</b> '+Object.keys(key).sort().map(k=>k+' = '+names[k]).join(' &nbsp; '));q.appendChild(leg);
+ let cur=null;const pal=el('div','pal');
+ Object.keys(key).sort().forEach(k=>{const s=el('button','sw',names[k]);s.style.background=cols[k];s.onclick=()=>{cur=cols[k];$$('.sw',pal).forEach(z=>z.classList.remove('on'));s.classList.add('on')};pal.appendChild(s)});q.appendChild(pal);
+ const n=pattern[0].length;const g=el('div','gridw');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;g.style.maxWidth=n*66+'px';const cells=[];
+ pattern.forEach(r=>r.forEach(d=>{const c=el('button','cell',d);c.d=d;c.onclick=()=>{if(cur){c.style.background=cur;c.c=cur}};cells.push(c);g.appendChild(c)}));q.appendChild(g);
+ q.isOk=()=>cells.every(c=>c.c===cols[c.d]);return add(q)}
+ex(8,'Τα χρώματα με 2 bits','Διάλεξε χρώμα και πάτα κάθε τετράγωνο με το χρώμα του κώδικά του.',(b,add)=>{
+ colourEx(add,[['00','01','01','00'],['10','11','11','10'],['10','11','11','10'],['00','01','01','00']],{'00':1,'01':1,'10':1,'11':1},{'00':'άσπρο','01':'κίτρινο','10':'κόκκινο','11':'μπλε'},{'00':'#ffffff','01':'#fdd835','10':'#e53935','11':'#1e88e5'})});
+ex(9,'Φτιάχνω δικό μου pixel art','Πάτα τα τετράγωνα που θέλεις για να γίνουν μαύρα και σχεδίασε κάτι δικό σου. Από κάτω βγαίνει ο κώδικάς σου: 1 στα μαύρα και 0 στα άσπρα.',(b,add,fin)=>{
+ const q=el('div','q');const g=el('div','gridw full');g.style.setProperty('--n',8);g.style.gridTemplateColumns='repeat(8,1fr)';
+ const cells=[];for(let i=0;i<64;i++){const c=el('button','cell','');c.onclick=()=>{c.classList.toggle('on');code()};cells.push(c);g.appendChild(c)}
+ const cd=el('div','code');const code=()=>{cd.innerHTML=Array.from({length:8},(_,r)=>cells.slice(r*8,r*8+8).map(c=>c.classList.contains('on')?1:0).join('')).join('<br>')};code();
+ const cl=el('button','btn','🧹 Καθάρισε');cl.onclick=()=>{cells.forEach(c=>c.classList.remove('on'));code()};
+ q.append(g,cd,cl);q.isOk=()=>cells.some(c=>c.classList.contains('on'));add(q);
+ choiceQ(add,'<b>Γιατί οι εικόνες με περισσότερα bits είναι πιο ζωντανές;</b>',shuffle(['Έχουν περισσότερα χρώματα','Έχουν λιγότερα pixel','Είναι πάντα μαύρες']),'Έχουν περισσότερα χρώματα')});
+ex(10,'Ο διακόπτης bit: 0 ή 1, ON ή OFF','Πάτα τη σωστή απάντηση.',(b,add)=>{
+ choiceQ(add,'1. Ο διακόπτης έχει τιμή 1. → είναι',['ON','OFF'],'ON');
+ choiceQ(add,'2. Το bit είναι 0. → ο διακόπτης είναι',['ON','OFF'],'OFF');
+ choiceQ(add,'3. Σβήνω το φως. → γράφω',['0','1'],'0');
+ choiceQ(add,'4. Ανάβω την οθόνη. → γράφω',['0','1'],'1');
+ choiceQ(add,'5. Το bit 0 σημαίνει ότι ο διακόπτης είναι',['ON','OFF'],'OFF')});
+ex(11,'Γράφω ένα byte (8 bits)','Πάτα κάθε κουτάκι: 0 ή 1.',(b,add)=>{
+ cellsQ(add,'1. Ένα byte με όλα τα bits 0:',8,v=>v.every(x=>x==='0'));
+ cellsQ(add,'2. Ένα byte με όλα τα bits 1:',8,v=>v.every(x=>x==='1'));
+ cellsQ(add,'3. Ένα byte με τέσσερα 1 και τέσσερα 0:',8,v=>v.filter(x=>x==='1').length===4&&v.filter(x=>x==='0').length===4)});
+ex(12,'Μετρώ τα “1” σε κάθε byte','Γράψε πόσα 1 και πόσα 0 έχει κάθε byte.',(b,add)=>{
+ [['01110110',5,3],['10000001',2,6],['11111111',8,0]].forEach(([s,o,z],i)=>{const q=fillQ(x=>x,`Πόσα “1”; [[${o}]] &nbsp; Πόσα “0”; [[${z}]]`);const r=el('div','q');
+  r.append(el('div','t',(i+1)+'.'),digitsRow(s),q.firstChild);r.isOk=q.isOk;$$('input',r).length;r.isOk=()=>$$('input',r).every(x=>x.dataset.a===norm(x.value));add(r)})});
+ex(13,'Συνδυασμοί με bits','Συμπλήρωσε όσα λείπουν.',(b,add)=>{
+ fillQ(add,'Με 2 bits έχουμε 4 συνδυασμούς: 00, 01, [[10]], [[11]]');
+ fillQ(add,'Με 3 bits έχουμε 8 συνδυασμούς: 000, 001, 010, [[011]], 100, [[101]], [[110]], 111');
+ fillQ(add,'Πόσα χρώματα έχουμε; με 1 bit → [[2]] &nbsp; με 2 bits → [[4]] &nbsp; με 3 bits → [[8]]')});
+ex(14,'Σωστό (Σ) ή Λάθος (Λ);','Διάλεξε Σ ή Λ.',(b,add)=>{
+ [['Το pixel είναι ένα μικροσκοπικό τετράγωνο της εικόνας.','Σ'],['Ένα byte έχει 8 bits.','Σ'],['Το bit μπορεί να είναι 2.','Λ'],['Με 1 bit έχουμε 4 χρώματα.','Λ'],['Ο υπολογιστής γράφει τα γράμματα με bytes.','Σ']].forEach(([t,a],i)=>choiceQ(add,(i+1)+'. '+t,['Σ','Λ'],a))});
+ex(15,'Ταίριαξε','Πάτα ένα αριστερά και μετά το σωστό δεξιά.',(b,add,fin)=>{
+ const L=['bit','byte','pixel','εικόνα με 1 bit','εικόνα με 2 bits'],R=['ομάδα από 8 bits','4 χρώματα','το 0 ή το 1','μικροσκοπικό τετράγωνο εικόνας','2 χρώματα'],ans=[2,0,3,4,1];
+ const q=el('div','q'),m=el('div','mt'),cl=el('div','col'),cr=el('div','col');m.append(cl,cr);q.appendChild(m);let sel=null,got=0;
+ const ls=L.map((t,i)=>{const x=el('button','btn',t);x.onclick=()=>{if(x.dataset.m)return;$$('.btn',cl).forEach(z=>z.classList.remove('sel'));x.classList.add('sel');sel=i};cl.appendChild(x);return x});
+ shuffle(R.map((t,j)=>j)).forEach(j=>{const x=el('button','btn',R[j]);x.onclick=()=>{if(x.dataset.m||sel===null)return;if(ans[sel]===j){x.dataset.m=ls[sel].dataset.m=1;x.classList.add('m'+sel);ls[sel].classList.remove('sel');ls[sel].classList.add('m'+sel);sel=null;if(++got===5)fin()}else shk(x)};cr.appendChild(x)});
+ q.isOk=()=>got===5;add(q)});
+ex(16,'Χρωματίζω την εικόνα','Πάτα μαύρο κάθε τετράγωνο με 1. Άφησε άσπρα τα τετράγωνα με 0.',(b,add)=>{
+ paintQ(add,['00011000','00111100','01111110','00111100','01111110','11111111','00011000','00011000']);
+ pic(add,'<b>Τι εικόνα βγήκε;</b>',['χριστουγεννιάτικο δέντρο','σπίτι','καρδιά','αστέρι'],'χριστουγεννιάτικο δέντρο')});
+ex(17,'Γράφω τον κώδικα','Τα γκρι τετράγωνα είναι μαύρα (1) και τα άσπρα είναι 0. Πάτα κάθε τετράγωνο: 0 ή 1.',(b,add)=>{
+ const q=codeGridQ(add,['00111100','01000010','10100101','10000001','10100101','10011001','01000010','00111100']);add(q);
+ pic(add,'<b>Τι εικόνα είναι;</b>',['χαμογελαστό πρόσωπο','σπίτι','αυτοκίνητο','ψάρι'],'χαμογελαστό πρόσωπο')});
+ex(18,'Τα χρώματα με 2 bits','Διάλεξε χρώμα και πάτα κάθε τετράγωνο με το χρώμα του κώδικά του.',(b,add)=>{
+ colourEx(add,[['11','10','10','11'],['10','01','01','10'],['10','01','01','10'],['11','10','10','11']],{'00':1,'01':1,'10':1,'11':1},{'00':'άσπρο','01':'πράσινο','10':'πορτοκαλί','11':'μωβ'},{'00':'#ffffff','01':'#43a047','10':'#fb8c00','11':'#8e24aa'})});
+(function(){const b=document.getElementById('fs'),d=document.documentElement;if(!(d.requestFullscreen||d.webkitRequestFullscreen))return;b.hidden=false;
+ const isF=()=>document.fullscreenElement||document.webkitFullscreenElement;
+ b.onclick=()=>{try{if(isF()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{const p=(d.requestFullscreen||d.webkitRequestFullscreen).call(d);if(p&&p.catch)p.catch(()=>{b.hidden=true})}}catch(e){b.hidden=true}};
+ const u=()=>{b.textContent=isF()?'✖ Έξοδος από πλήρη οθόνη':'⛶ Πλήρης οθόνη'};document.addEventListener('fullscreenchange',u);document.addEventListener('webkitfullscreenchange',u)})();
+</script>
+</body></html>

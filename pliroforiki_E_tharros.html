@@ -1,0 +1,181 @@
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html{color-scheme:light}body{margin:0}</style><title>Μικρά βήματα, μεγάλο θάρρος</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+<style>
+:root{--bg:#f5fbf4;--fg:#1d2b3a;--muted:#5b6b7b;--mint:#d4f1d2;--mint2:#bde6ba;--mintb:#86cf84;--card:#ffffff;--accent:#2e5fa8;--ok:#1e9e57;--bad:#e4572e;--sel:#ffe9a8;--lilac:#ffa8c8;--lilacb:#e0357f;--lilacf:#5e0a2d;--orange:#fff4cf;--orangeb:#e9c46a;--orangef:#5c4306;--ink:#1d2b3a;--shadow:0 2px 8px rgba(30,60,50,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131f14;--fg:#e8f3ee;--muted:#a3b8ad;--mint:#1f3d22;--mint2:#285030;--mintb:#4a8a4f;--card:#1a2c1c;--accent:#7fb0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#7a1f4a;--lilacb:#e0357f;--lilacf:#ffe0ee;--orange:#4a3d15;--orangeb:#a8892f;--orangef:#fff0c2;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#131f14;--fg:#e8f3ee;--muted:#a3b8ad;--mint:#1f3d22;--mint2:#285030;--mintb:#4a8a4f;--card:#1a2c1c;--accent:#7fb0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#7a1f4a;--lilacb:#e0357f;--lilacf:#ffe0ee;--orange:#4a3d15;--orangeb:#a8892f;--orangef:#fff0c2;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"Comfortaa","Comic Sans MS","Trebuchet MS",system-ui,sans-serif;font-size:17px;line-height:1.45;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:14px 16px;text-align:center}
+h1{margin:0;font-size:1.45rem;color:var(--accent);text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin-top:2px}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.who label{display:flex;gap:6px;align-items:center;font-size:.95rem}
+.who input{font:inherit;padding:6px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);min-width:0;width:min(220px,58vw)}
+.who input.cl{width:90px}
+.prog{margin-top:8px;font-size:1.05rem;min-height:1.6rem;letter-spacing:1px;word-break:break-all}
+.theory{background:var(--orange);border:3px solid var(--orangeb);border-radius:22px;padding:14px 16px;color:var(--orangef)}
+.theory h2{margin:0 0 6px;font-size:1.2rem}
+.theory p{margin:6px 0;font-size:.95rem}
+.ex{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:12px;box-shadow:var(--shadow)}
+.ex.done{border-color:var(--ok)}
+.hd{display:flex;gap:10px;align-items:center;margin-bottom:12px;background:var(--lilac);border:3px solid var(--lilacb);border-radius:18px;padding:8px 10px;color:var(--lilacf)}
+.num{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700}
+.tt{flex:1;min-width:0}
+.tt h2{margin:0;font-size:1.05rem;text-wrap:balance}
+.tt p{margin:3px 0 0;font-size:.88rem}
+.say{flex:none;border:0;background:var(--card);border-radius:50%;width:40px;height:40px;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow)}
+.badge{display:none;font-size:1.6rem}
+.ex.done .badge{display:block;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.4)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.shake{animation:shake .35s}
+.body{display:flex;flex-direction:column;gap:8px}
+.q{background:var(--card);border:3px solid transparent;border-radius:16px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:.95rem}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q .t{flex:1 1 200px;min-width:0}
+.btn{font:inherit;border:3px solid var(--mintb);background:var(--card);color:var(--fg);border-radius:14px;padding:5px 12px;cursor:pointer;min-width:44px;min-height:44px}
+.btn.sel{border-color:var(--accent);background:var(--sel)}
+.btn.m0{background:#ffd9d9;border-color:#e57373;color:#1d2b3a}.btn.m1{background:#d9e8ff;border-color:#6c9cf0;color:#1d2b3a}.btn.m2{background:#e6d9ff;border-color:#9b7be0;color:#1d2b3a}.btn.m3{background:#d9f5d9;border-color:#5cc06b;color:#1d2b3a}.btn.m4{background:#ffe9c7;border-color:#e9a100;color:#1d2b3a}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.q input{font:inherit;width:3.4em;text-align:center;padding:4px;border-radius:10px;border:2px solid var(--mintb);background:var(--card);color:var(--fg)}
+.q input.w{width:6.5em}
+.ft{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.msg{font-size:.9rem}
+.chk{background:var(--accent);color:#fff;border-color:var(--accent)}
+.gridw{display:grid;gap:3px;width:100%}
+.gridw.full{max-width:calc(var(--n)*46px)}
+.cell{font:inherit;font-weight:700;font-size:1rem;aspect-ratio:1;min-width:0;padding:0;border:2px solid var(--lilacb);border-radius:8px;background:#fff;color:#1d2b3a;cursor:pointer;display:grid;place-items:center}
+.cell.on{background:#222;color:#fff}
+.cell.gy{background:#b9c1d0}
+.cell.circ{border-radius:50%}
+.cdig{text-align:center;font-weight:700;font-size:1.05rem}
+.side{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;width:100%}
+.side>.gridw{flex:0 0 auto;width:min(100%,calc(var(--n)*44px))}
+.side .txt{flex:1 1 180px;min-width:0;font-size:.92rem}
+.pal{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.sw{min-height:42px;padding:3px 10px;border-radius:21px;border:3px solid #9aa5b8;cursor:pointer;font:inherit;font-size:.78rem;font-weight:700;color:#1d2b3a}
+.sw.on{outline:3px solid var(--fg)}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;width:100%}.mt .col{display:flex;flex-direction:column;gap:8px}
+.mt .btn{font-size:.85rem;font-weight:700;min-height:52px}
+.q textarea,.q input.full{font:inherit;width:100%;padding:8px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);text-align:left}.q input.full{flex:1 1 100%}.stair{display:flex;flex-direction:column;gap:6px;width:100%}.stair .q{padding:6px 10px}.lbl{font-weight:700;font-size:.85rem;color:var(--muted)}.story{background:var(--orange);color:var(--orangef);border-radius:14px;padding:10px 12px;font-size:.92rem;width:100%}.cv{width:100%;aspect-ratio:4/3;background:#fff;border-radius:12px;border:3px dashed var(--lilacb);touch-action:none;display:block}.panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}.panels>div{min-width:0}.stars{display:flex;gap:6px;flex-wrap:wrap;width:100%}.star{font-size:2rem;background:none;border:0;cursor:pointer;padding:0 4px;color:#c9a227}.star small{display:block;font-size:.6rem;color:var(--muted)}.code{font-size:.8rem;letter-spacing:2px;line-height:1.6;color:var(--muted)}
+.fin{text-align:center;font-size:1.4rem;display:none}.fin.on{display:block}
+@media(max-width:420px){body{font-size:15.5px}}
+</style>
+<div class="wrap">
+<header>
+ <h1>Μικρά βήματα, μεγάλο θάρρος</h1>
+ <div class="sub">Εργαστήριο Δεξιοτήτων • Ζω καλύτερα – Ευ ζην • Ε΄ Δημοτικού</div>
+ <div class="who"><label>Όνομα: <input id="nm" autocomplete="off"></label><label>Τμήμα: <input id="cl" class="cl" autocomplete="off"></label></div>
+ <div class="prog" id="prog" aria-live="polite"></div>
+ <button class="btn" id="fs" hidden>⛶ Πλήρης οθόνη</button>
+</header>
+<section class="theory">
+ <h2>💡 Θυμάμαι</h2>
+ <p>Όταν αποφεύγουμε κάτι που φοβόμαστε, ο φόβος συνήθως <b>μεγαλώνει</b>. Όταν το πλησιάζουμε σιγά σιγά, <b>με μικρά βήματα</b>, ο φόβος μικραίνει και το θάρρος μας μεγαλώνει. Δεν χρειάζεται να τα καταφέρουμε όλα μονομιάς!</p>
+</section>
+<main id="exs" class="wrap"></main>
+<div class="fin" id="fin">🎉 Μπράβο! Τα κατάφερες! 🎉</div>
+</div>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const shk=e=>{e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')};
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='el-GR';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+const TOTAL=10,doneSet=new Set(),COL=['#2e5fa8','#e4572e','#7a5cc8','#2e9e5b','#e9a100'];
+function upd(){$('#prog').textContent='⭐'.repeat(doneSet.size)+'☆'.repeat(TOTAL-doneSet.size);$('#fin').classList.toggle('on',doneSet.size===TOTAL)}
+upd();
+function ex(n,title,instr,build){
+ const s=el('section','ex');s.id='e'+n;
+ s.innerHTML=`<div class="hd"><div class="num" style="background:${COL[(n-1)%5]}">${n}</div><div class="tt"><h2>${title}</h2>${instr?`<p>${instr}</p>`:''}</div><span class="badge">⭐</span><button class="say" aria-label="Άκουσε">🔊</button></div><div class="body"></div><div class="ft"><button class="btn chk">Έλεγξε ✔</button><span class="msg"></span></div>`;
+ $('#exs').appendChild(s);
+ const b=$('.body',s),qs=[],msg=$('.msg',s);
+ const fin=()=>{if(doneSet.has(n))return;doneSet.add(n);s.classList.add('done');msg.textContent='🎉 Μπράβο!';upd()};
+ $('.say',s).onclick=()=>say(title+'. '+(instr||'').replace(/<[^>]+>/g,''));
+ build(b,q=>{qs.push(q);b.appendChild(q);q.addEventListener('input',()=>q.classList.remove('ok','bad'));q.addEventListener('click',()=>q.classList.remove('ok','bad'));return q},fin);
+ $('.chk',s).onclick=()=>{let all=true;qs.forEach(q=>{const ok=q.isOk();q.classList.toggle('ok',ok);q.classList.toggle('bad',!ok);if(!ok){all=false;shk(q)}});if(all)fin();else msg.textContent='Κοίτα ξανά τα κόκκινα πλαίσια 🙂'};
+}
+const norm=v=>v.trim().toLowerCase().replace(/[“”"]/g,'');
+function choiceQ(add,text,opts,correct){
+ const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);q.val=null;
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{$$('.btn',o).forEach(z=>z.classList.remove('sel'));b.classList.add('sel');q.val=x};o.appendChild(b)});
+ q.isOk=()=>q.val===correct;return add(q)}
+function fillQ(add,html){ // [[ans|alt]] -> input
+ const q=el('div','q');q.innerHTML='<div class="t">'+html.replace(/\[\[(.+?)\]\]/g,(m,a)=>`<input data-a="${a}" inputmode="${/^\d+$/.test(a)?'numeric':'text'}" autocomplete="off"${/^\d+$/.test(a)?'':' class="w"'}>`)+'</div>';
+ q.isOk=()=>$$('input',q).every(i=>i.dataset.a.split('|').includes(norm(i.value)));return add(q)}
+function cyc(c){c.onclick=()=>{c.v=c.v===''?'0':c.v==='0'?'1':'';c.textContent=c.v}}
+function cellsQ(add,pre,n,pred){ // row/grid of cycle cells
+ const q=el('div','q');if(pre)q.appendChild(el('div','t',pre));
+ const g=el('div','gridw full');g.style.setProperty('--n',8);g.style.gridTemplateColumns='repeat(8,1fr)';
+ for(let i=0;i<8;i++){const c=el('button','cell','');c.v='';cyc(c);g.appendChild(c)}q.appendChild(g);
+ q.isOk=()=>pred($$('.cell',g).map(c=>c.v));return add(q)}
+function digitsRow(s,circ){const g=el('div','gridw full');g.style.setProperty('--n',s.length);g.style.gridTemplateColumns=`repeat(${s.length},1fr)`;[...s].forEach(d=>{const c=el(circ?'div':'div','cdig',d);g.appendChild(c)});return g}
+function paintQ(add,pattern,circ){ // click to blacken cells under/over the digits
+ const q=el('div','q');const rows=pattern;const n=rows[0].length;
+ const g=el('div','gridw full');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];
+ rows.forEach(r=>[...r].forEach(d=>{if(circ){const w=el('div','cdig',d);g.appendChild(w)}else{}}));
+ if(circ){const g2=el('div','gridw full');g2.style.setProperty('--n',n);g2.style.gridTemplateColumns=`repeat(${n},1fr)`;[...rows[0]].forEach(d=>{const c=el('button','cell circ','');c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g2.appendChild(c)});q.append(g,g2)}
+ else{rows.forEach(r=>[...r].forEach(d=>{const c=el('button','cell',d);c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g.appendChild(c)}));g.innerHTML='';cells.forEach(c=>g.appendChild(c));q.appendChild(g)}
+ q.isOk=()=>cells.every(c=>c.classList.contains('on')===(c.d==='1'));q.cells=cells;return add(q)}
+function codeGridQ(add,pattern){ // grey cells => write 0/1
+ const q=el('div','q');const n=pattern[0].length;const g=el('div','gridw');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];pattern.forEach(r=>[...r].forEach(d=>{const c=el('button','cell'+(d==='1'?' gy':''),'');c.v='';c.d=d;cyc(c);cells.push(c);g.appendChild(c)}));
+ q.appendChild(g);q.isOk=()=>cells.every(c=>c.v===c.d);q.grid=g;return q}
+function sideQ(add,grid,txt){const q=el('div','q');const s=el('div','side');grid.classList.add('full');s.append(grid,el('div','txt',txt));q.appendChild(s);return q}
+
+// ---------- νέες ασκήσεις ----------
+function textQ(add,label,min,ph){const q=el('div','q');q.innerHTML=(label?`<div class="t lbl">${label}</div>`:'')+`<input class="full" placeholder="${ph||'Γράψε εδώ...'}" autocomplete="off">`;q.isOk=()=>$('input',q).value.trim().length>=(min||3);return add(q)}
+function multiQ(add,text,opts,correct){const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);const sel=new Set();
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{b.classList.toggle('sel');b.classList.contains('sel')?sel.add(x):sel.delete(x)};o.appendChild(b)});
+ q.isOk=()=>sel.size===correct.length&&correct.every(c=>sel.has(c));return add(q)}
+ex(1,'Μύθοι και αλήθειες για το θάρρος','Διάλεξε Σ (σωστό) ή Λ (λάθος).',(b,add)=>{
+ [['Οι γενναίοι άνθρωποι δεν φοβούνται ποτέ τίποτα.','Λ'],['Μπορώ να νιώθω φόβο και να κάνω παρ’ όλα αυτά αυτό που χρειάζεται.','Σ'],['Αν αποφεύγω πάντα κάτι που φοβάμαι, ο φόβος συνήθως δεν φεύγει.','Σ'],['Δεν επιτρέπεται να πω σε κάποιον ότι φοβάμαι.','Λ'],['Η εξάσκηση σε μικρά βήματα με βοηθά να γίνομαι πιο θαρραλέος/α.','Σ']].forEach(([t,a],i)=>choiceQ(add,(i+1)+'. '+t,['Σ','Λ'],a))});
+ex(2,'Φόβος ή κίνδυνος;','Κάποιες φορές ο φόβος μάς προστατεύει από πραγματικό κίνδυνο και κάποιες φορές μεγαλοποιεί κάτι που μπορούμε να δοκιμάσουμε. Διάλεξε.',(b,add)=>{
+ const O=['Κίνδυνος','Ο φόβος το μεγαλώνει'];
+ [['Περνάω τον δρόμο χωρίς να κοιτάξω αν έρχονται αυτοκίνητα.',0],['Σηκώνω το χέρι για να πω τη γνώμη μου στην τάξη.',1],['Ένας άγνωστος στο διαδίκτυο μού ζητά τη διεύθυνσή μου.',0],['Πηγαίνω σε μια καινούργια δραστηριότητα και δεν ξέρω κανέναν.',1],['Ακουμπάω ένα καυτό μάτι της κουζίνας.',0],['Ρωτάω τον δάσκαλο κάτι που δεν κατάλαβα.',1]].forEach(([t,a],i)=>choiceQ(add,(i+1)+'. '+t,O,O[a]))});
+ex(3,'Η μέθοδος 5-4-3-2-1: ηρεμώ το σώμα μου','Όταν νιώθω αγχωμένος/η, κοιτάζω γύρω μου και γράφω αργά, παίρνοντας ανάσες.',(b,add)=>{
+ [['5 πράγματα που βλέπω',5],['4 πράγματα που μπορώ να αγγίξω',4],['3 ήχους που ακούω',3],['2 μυρωδιές που μυρίζω',2],['1 γεύση ή κάτι καλό για μένα',1]].forEach(([l])=>textQ(add,l,2))});
+ex(4,'Η σκάλα του θάρρους','Διάλεξε έναν φόβο που θέλεις να μικρύνεις. Γράψε από κάτω προς τα πάνω 5 μικρά βήματα: από το πιο εύκολο ως το πιο δύσκολο (στόχος).',(b,add)=>{
+ textQ(add,'Ο φόβος που διάλεξα',3,'π.χ. να μιλάω μπροστά στην τάξη');
+ const st=el('div','stair');b.appendChild(st);
+ const L=[['5 · ΣΤΟΧΟΣ','#ffd5cc',4],['4 · Δύσκολο','#ffe6cc',3],['3 · Μέτριο','#fff3d6',2],['2 · Λίγο εύκολο','#e6f5d6',1],['1 · Πολύ εύκολο: ξεκινάω από εδώ','#d2f0df',0]];
+ L.forEach(([l,c,k])=>{const q=textQ(x=>x,l,3);q.style.background=c;q.style.color='#1d2b3a';q.style.marginLeft=(k*5)+'%';$('input',q).style.background='#fff';$('input',q).style.color='#1d2b3a';$('.t',q).style.color='#5b6b7b';st.appendChild(q);add(q)});
+ const n=el('div','q','<div class="t">Ξεκινάω από το σκαλί 1. Όταν γίνει εύκολο, ανεβαίνω στο επόμενο! 🪜</div>');b.appendChild(n)});
+ex(5,'Λέξεις που δίνουν δύναμη','Ο φόβος μιλάει με «δεν μπορώ». Γράψε πώς θα μιλούσες εσύ σαν γενναίος/α φίλος του εαυτού σου.',(b,add)=>{
+ b.appendChild(el('div','q','<div class="t"><i>«Δεν μπορώ να το κάνω.»</i> → <b>«Δεν μπορώ ακόμη. Θα το δοκιμάσω βήμα βήμα.»</b> (παράδειγμα)</div>'));
+ ['«Θα γελάσουν όλοι μαζί μου.»','«Είμαι χάλια σε αυτό.»','«Αν αποτύχω, όλα θα καταστραφούν.»','«Δεν θα τα καταφέρω ποτέ.»'].forEach(t=>textQ(add,t+' →',8,'Η γενναία σκέψη μου...'))});
+ex(6,'Ο Θησέας και ο Λαβύρινθος','Διάβασε την ιστορία και απάντησε.',(b,add)=>{
+ b.appendChild(el('div','story','Στην Κρήτη, μέσα σε έναν σκοτεινό λαβύρινθο, ζούσε ο Μινώταυρος και όλοι τον φοβούνταν. Ο νεαρός Θησέας φοβήθηκε κι αυτός, αλλά αποφάσισε να μπει. Η Αριάδνη του έδωσε ένα κουβάρι νήμα. Ξετύλιγε το νήμα καθώς προχωρούσε και, όταν τελείωσε, το ακολούθησε για να βρει την έξοδο. <button class="btn" id="rd" style="min-height:36px;padding:2px 10px;margin-left:6px">🔊 Άκουσε</button>'));
+ $('#rd').onclick=()=>say($('.story').textContent.replace('🔊 Άκουσε',''));
+ textQ(add,'1. Πώς νομίζεις ότι ένιωθε ο Θησέας πριν μπει;',3);
+ choiceQ(add,'2. Τι έκανε παρόλο που φοβόταν;',shuffle(['Μπήκε στον λαβύρινθο','Έφυγε τρέχοντας','Κρύφτηκε']),'Μπήκε στον λαβύρινθο');
+ textQ(add,'3. Το νήμα της Αριάδνης ήταν ένα σχέδιο και μια βοήθεια. Ποιο είναι το δικό σου «νήμα» όταν φοβάσαι;',3)});
+ex(7,'Ο ήρωάς μου νικά τον φόβο','Φτιάξε ένα κόμικ με δικό σου ήρωα/ήρωίδα. Ζωγράφισε με το δάχτυλο ή το ποντίκι και γράψε μια πρόταση για κάθε εικόνα.',(b,add)=>{
+ const q=el('div','q');let cur='#222';const pal=el('div','pal');['#222','#e53935','#fb8c00','#fdd835','#43a047','#1e88e5','#8e24aa','#8d6e63'].forEach((c,i)=>{const s=el('button','sw'+(i?'':' on'));s.style.background=c;s.style.minWidth='34px';s.onclick=()=>{cur=c;$$('.sw',pal).forEach(z=>z.classList.remove('on'));s.classList.add('on')};pal.appendChild(s)});q.appendChild(pal);
+ const P=el('div','panels');const caps=[];
+ ['1 · Ο φόβος εμφανίζεται','2 · Σκέφτομαι ή ζητώ βοήθεια','3 · Κάνω ένα μικρό βήμα','4 · Το τέλος: πώς νιώθω;'].forEach(tt=>{const d=el('div','',`<div class="lbl">${tt}</div>`);const cv=el('canvas','cv');cv.width=400;cv.height=300;const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,400,300);cx.lineCap=cx.lineJoin='round';cx.lineWidth=5;let dr=false;
+  const pos=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*400/r.width,(e.clientY-r.top)*300/r.height]};
+  cv.onpointerdown=e=>{dr=true;cv.setPointerCapture(e.pointerId);const[x,y]=pos(e);cx.strokeStyle=cur;cx.beginPath();cx.moveTo(x,y);cx.lineTo(x+.1,y+.1);cx.stroke()};
+  cv.onpointermove=e=>{if(!dr)return;const[x,y]=pos(e);cx.lineTo(x,y);cx.stroke()};cv.onpointerup=cv.onpointercancel=()=>dr=false;
+  const i=el('input','full');i.placeholder='Μια πρόταση...';i.style.marginTop='4px';i.style.padding='6px 8px';i.autocomplete='off';caps.push(i);d.append(cv,i);P.appendChild(d)});
+ q.appendChild(P);q.isOk=()=>caps.every(i=>i.value.trim().length>=3);add(q)});
+ex(8,'Ψηφιακή γενναιότητα','Στο διαδίκτυο βλέπουμε καμιά φορά κάτι που μας τρομάζει ή μας στεναχωρεί. Διάλεξε όσα βοηθούν (μπορεί να είναι περισσότερα από ένα).',(b,add)=>{
+ multiQ(add,'1. Βλέπω ένα τρομακτικό βίντεο που δεν ήθελα να δω.',shuffle(['Κλείνω την οθόνη','Το λέω σε έναν ενήλικα που εμπιστεύομαι','Το στέλνω σε όλους τους φίλους μου']),['Κλείνω την οθόνη','Το λέω σε έναν ενήλικα που εμπιστεύομαι']);
+ multiQ(add,'2. Κάποιος μού στέλνει άσχημα μηνύματα.',shuffle(['Απαντάω θυμωμένα και με ύβρεις','Δεν απαντάω και κρατάω φωτογραφία της οθόνης','Μιλάω σε ενήλικα και τον μπλοκάρω']),['Δεν απαντάω και κρατάω φωτογραφία της οθόνης','Μιλάω σε ενήλικα και τον μπλοκάρω']);
+ multiQ(add,'3. Ένας άγνωστος θέλει να γίνουμε φίλοι και ζητά φωτογραφία μου.',shuffle(['Του στέλνω φωτογραφία, αν είναι ευγενικός','Δεν απαντώ και ενημερώνω ενήλικα','Του λέω το σχολείο μου']),['Δεν απαντώ και ενημερώνω ενήλικα'])});
+ex(9,'Η γενναία πρόκλησή μου αυτής της εβδομάδας','Σχεδίασε τη δική σου πρόκληση και χρωμάτισε ένα αστέρι κάθε μέρα που προσπαθείς.',(b,add)=>{
+ textQ(add,'Θα προσπαθήσω να...',4);textQ(add,'Βήμα 1',3);textQ(add,'Βήμα 2',3);textQ(add,'Βήμα 3',3);textQ(add,'Ποιος μπορεί να με βοηθήσει;',2);textQ(add,'Η επιβράβευσή μου',2);
+ const q=el('div','q','<div class="t lbl">Κάθε μέρα που το προσπαθώ, πατάω ένα αστέρι:</div>');const s=el('div','stars');['Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή'].forEach(d=>{const x=el('button','star','☆<small>'+d+'</small>');x.onclick=()=>{x.firstChild.textContent=x.firstChild.textContent==='☆'?'⭐':'☆'};s.appendChild(x)});q.appendChild(s);q.isOk=()=>true;add(q)});
+ex(10,'Οι φράσεις θάρρους μου','Γράψε 3 σύντομες φράσεις που θα λες στον εαυτό σου όταν φοβάσαι. Π.χ. «Μικρό βήμα, μεγάλο θάρρος.»',(b,add)=>{
+ textQ(add,'1',4);textQ(add,'2',4);textQ(add,'3',4);textQ(add,'Σήμερα έμαθα ότι...',4);textQ(add,'Η υπερδύναμή μου είναι...',3)});
+(function(){const b=document.getElementById('fs'),d=document.documentElement;if(!(d.requestFullscreen||d.webkitRequestFullscreen))return;b.hidden=false;
+ const isF=()=>document.fullscreenElement||document.webkitFullscreenElement;
+ b.onclick=()=>{try{if(isF()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{const p=(d.requestFullscreen||d.webkitRequestFullscreen).call(d);if(p&&p.catch)p.catch(()=>{b.hidden=true})}}catch(e){b.hidden=true}};
+ const u=()=>{b.textContent=isF()?'✖ Έξοδος από πλήρη οθόνη':'⛶ Πλήρης οθόνη'};document.addEventListener('fullscreenchange',u);document.addEventListener('webkitfullscreenchange',u)})();
+</script>
+</body></html>

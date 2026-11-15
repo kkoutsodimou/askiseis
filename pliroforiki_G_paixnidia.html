@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Παίζω με την Πληροφορική Γ΄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+<style>
+:root{--bg:#f3f9fe;--fg:#1d2b3a;--muted:#5b6b7b;--mint:#d6ecfb;--mint2:#c2e2f7;--mintb:#8cc4ec;--card:#ffffff;--accent:#1f5fae;--ok:#1e9e57;--bad:#e4572e;--sel:#ffe9a8;--lilac:#ffe6cc;--lilacb:#f2b36d;--lilacf:#6b3a07;--orange:#fff6c8;--orangeb:#e6cf5a;--orangef:#5a4a00;--ink:#1d2b3a;--shadow:0 2px 8px rgba(30,60,50,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a24;--fg:#e8f1f8;--muted:#a6b9c9;--mint:#1d3347;--mint2:#25415a;--mintb:#4a82ad;--card:#172736;--accent:#8fc0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#5a3a14;--lilacb:#d08a38;--lilacf:#ffe9cf;--orange:#4a4315;--orangeb:#a8942f;--orangef:#fff6c8;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101a24;--fg:#e8f1f8;--muted:#a6b9c9;--mint:#1d3347;--mint2:#25415a;--mintb:#4a82ad;--card:#172736;--accent:#8fc0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#5a3a14;--lilacb:#d08a38;--lilacf:#ffe9cf;--orange:#4a4315;--orangeb:#a8942f;--orangef:#fff6c8;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"Comfortaa","Comic Sans MS","Trebuchet MS",system-ui,sans-serif;font-size:17px;line-height:1.45;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:14px 16px;text-align:center}
+h1{margin:0;font-size:1.45rem;color:var(--accent);text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin-top:2px}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.who label{display:flex;gap:6px;align-items:center;font-size:.95rem}
+.who input{font:inherit;padding:6px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);min-width:0;width:min(220px,58vw)}
+.who input.cl{width:90px}
+.prog{margin-top:8px;font-size:1.05rem;min-height:1.6rem;letter-spacing:1px;word-break:break-all}
+.theory{background:var(--orange);border:3px solid var(--orangeb);border-radius:22px;padding:14px 16px;color:var(--orangef)}
+.theory h2{margin:0 0 6px;font-size:1.2rem}
+.theory p{margin:6px 0;font-size:.95rem}
+.ex{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:12px;box-shadow:var(--shadow)}
+.ex.done{border-color:var(--ok)}
+.hd{display:flex;gap:10px;align-items:center;margin-bottom:12px;background:var(--lilac);border:3px solid var(--lilacb);border-radius:18px;padding:8px 10px;color:var(--lilacf)}
+.num{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700}
+.tt{flex:1;min-width:0}
+.tt h2{margin:0;font-size:1.05rem;text-wrap:balance}
+.tt p{margin:3px 0 0;font-size:.88rem}
+.say{flex:none;border:0;background:var(--card);border-radius:50%;width:40px;height:40px;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow)}
+.badge{display:none;font-size:1.6rem}
+.ex.done .badge{display:block;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.4)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.shake{animation:shake .35s}
+.body{display:flex;flex-direction:column;gap:8px}
+.q{background:var(--card);border:3px solid transparent;border-radius:16px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:.95rem}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q .t{flex:1 1 200px;min-width:0}
+.btn{font:inherit;border:3px solid var(--mintb);background:var(--card);color:var(--fg);border-radius:14px;padding:5px 12px;cursor:pointer;min-width:44px;min-height:44px}
+.btn.sel{border-color:var(--accent);background:var(--sel)}
+.btn.m0{background:#ffd9d9;border-color:#e57373;color:#1d2b3a}.btn.m1{background:#d9e8ff;border-color:#6c9cf0;color:#1d2b3a}.btn.m2{background:#e6d9ff;border-color:#9b7be0;color:#1d2b3a}.btn.m3{background:#d9f5d9;border-color:#5cc06b;color:#1d2b3a}.btn.m4{background:#ffe9c7;border-color:#e9a100;color:#1d2b3a}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.q input{font:inherit;width:3.4em;text-align:center;padding:4px;border-radius:10px;border:2px solid var(--mintb);background:var(--card);color:var(--fg)}
+.q input.w{width:6.5em}
+.ft{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.msg{font-size:.9rem}
+.chk{background:var(--accent);color:#fff;border-color:var(--accent)}
+.gridw{display:grid;gap:3px;width:100%}
+.gridw.full{max-width:calc(var(--n)*46px)}
+.cell{font:inherit;font-weight:700;font-size:1rem;aspect-ratio:1;min-width:0;padding:0;border:2px solid var(--lilacb);border-radius:8px;background:#fff;color:#1d2b3a;cursor:pointer;display:grid;place-items:center}
+.cell.on{background:#222;color:#fff}
+.cell.gy{background:#b9c1d0}
+.cell.circ{border-radius:50%}
+.cdig{text-align:center;font-weight:700;font-size:1.05rem}
+.side{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;width:100%}
+.side>.gridw{flex:0 0 auto;width:min(100%,calc(var(--n)*44px))}
+.side .txt{flex:1 1 180px;min-width:0;font-size:.92rem}
+.pal{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.sw{min-height:42px;padding:3px 10px;border-radius:21px;border:3px solid #9aa5b8;cursor:pointer;font:inherit;font-size:.78rem;font-weight:700;color:#1d2b3a}
+.sw.on{outline:3px solid var(--fg)}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;width:100%}.mt .col{display:flex;flex-direction:column;gap:8px}
+.mt .btn{font-size:.85rem;font-weight:700;min-height:52px}
+.q textarea,.q input.full{font:inherit;width:100%;padding:8px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);text-align:left}.q input.full{flex:1 1 100%}.stair{display:flex;flex-direction:column;gap:6px;width:100%}.stair .q{padding:6px 10px}.lbl{font-weight:700;font-size:.85rem;color:var(--muted)}.story{background:var(--orange);color:var(--orangef);border-radius:14px;padding:10px 12px;font-size:.92rem;width:100%}.cv{width:100%;aspect-ratio:4/3;background:#fff;border-radius:12px;border:3px dashed var(--lilacb);touch-action:none;display:block}.panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}.panels>div{min-width:0}.stars{display:flex;gap:6px;flex-wrap:wrap;width:100%}.star{font-size:2rem;background:none;border:0;cursor:pointer;padding:0 4px;color:#c9a227}.star small{display:block;font-size:.6rem;color:var(--muted)}.code{font-size:.8rem;letter-spacing:2px;line-height:1.6;color:var(--muted)}
+.fin{text-align:center;font-size:1.4rem;display:none}.fin.on{display:block}
+@media(max-width:420px){body{font-size:15.5px}}
+</style><style>
+.sg{display:flex;flex-direction:column;align-items:center;gap:2px}.sg svg{width:54px;height:54px;display:block}
+.sc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;min-width:0;flex:1 1 90px}.sc svg{width:100%;max-width:150px;height:auto}
+.ord{display:flex;flex-wrap:wrap;gap:6px;width:100%}.chosen{width:100%;font-size:.92rem;background:var(--lilac);color:var(--lilacf);border-radius:12px;padding:6px 10px;min-height:2.2em}
+.ws{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:100%;max-width:440px}
+.ws .cell{font-size:.95rem;border-radius:6px;border-width:1px;padding:0;min-height:28px}.ws .cell.f0{background:#ffd9d9}.ws .cell.f1{background:#d9e8ff}.ws .cell.f2{background:#e6d9ff}.ws .cell.f3{background:#d9f5d9}.ws .cell.f4{background:#ffe9c7}.ws .cell.f5{background:#ffd9f0}.ws .cell.f6{background:#d9f5f5}.ws .cell.f7{background:#f0f0c0}.ws .cell.st{outline:3px solid var(--accent)}
+.wl{display:flex;flex-wrap:wrap;gap:6px;width:100%}.wl span{background:var(--card);border-radius:12px;padding:3px 10px;font-weight:700;font-size:.85rem}.wl span.ok{background:var(--ok);color:#fff;text-decoration:line-through}
+.tools{display:flex;flex-wrap:wrap;gap:6px;width:100%;align-items:center}.tools .sw{width:40px;height:40px;min-height:40px;padding:0;border-radius:50%}.tools .sw.on{outline:4px solid var(--fg);outline-offset:1px}.tools .btn{font-size:.85rem}.tools .btn.sel{background:var(--sel)}
+.dip{background:linear-gradient(135deg,#fff6c8,#ffe6cc);color:#5a3a07;border:5px double #e0a030;border-radius:22px;padding:18px 14px;font-size:1rem}.dip b{font-size:1.5rem;display:block;margin:4px 0}
+.ws{max-width:480px}.ws .cell{font-size:.85rem;min-height:0}
+.cwg{display:grid;gap:2px;width:100%;max-width:440px}.cwx{aspect-ratio:1}.cwc{position:relative;aspect-ratio:1}.cwc input{width:100%;height:100%;padding:0;border-radius:6px;border:2px solid var(--lilacb);text-align:center;font:inherit;font-weight:700;font-size:1rem;text-transform:uppercase;background:var(--card);color:var(--fg);min-width:0}.cwn{position:absolute;top:1px;left:3px;font-size:.55rem;font-weight:700;color:var(--muted);pointer-events:none;z-index:1}
+.cwl{display:flex;flex-direction:column;gap:8px;width:100%;font-size:.88rem}.cwl>div{display:flex;flex-direction:column;gap:3px}
+@media print{
+:root:root:root{--bg:#fff;--fg:#1d2b3a;--muted:#5b6b7b;--mint:#d6ecfb;--mintb:#8cc4ec;--card:#fff;--lilac:#ffe6cc;--lilacb:#f2b36d;--lilacf:#6b3a07;--orange:#fff6c8;--orangeb:#e6cf5a;--orangef:#5a4a00;--accent:#1f5fae;--shadow:none;color-scheme:light}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#fff;font-size:13px;padding:0}
+#fs,#pr,.say,.ft,.tools,.badge{display:none!important}
+.ex,.theory,header,.dip{break-inside:avoid}.q{break-inside:avoid}
+.ex{box-shadow:none}.wrap{max-width:none}
+.ws,.cwg{max-width:360px}
+}
+</style>
+<style>.mail{display:flex;flex-direction:column;gap:6px;width:100%}.mrow{text-align:left;width:100%;border-radius:12px}.mrow.sel{background:#ffd9d9;border-color:#d62828}.exth{background:var(--orange);color:var(--orangef);border:2px solid var(--orangeb);border-radius:14px;padding:8px 12px;font-size:.92rem;line-height:1.45;margin:8px 0}.ws{display:grid;gap:2px;width:100%;max-width:420px}.ws .cell{font-size:1rem;border-radius:6px;border-width:1px;padding:0;min-height:0;aspect-ratio:1}.ws .cell.f0{background:#ffd9d9}.ws .cell.f1{background:#d9e8ff}.ws .cell.f2{background:#e6d9ff}.ws .cell.f3{background:#d9f5d9}.ws .cell.f4{background:#ffe9c7}.ws .cell.f5{background:#ffd9f0}.ws .cell.f6{background:#d9f5f5}.ws .cell.f7{background:#f0f0c0}.ws .cell.st{outline:3px solid var(--accent)}.wl{display:flex;flex-wrap:wrap;gap:6px;width:100%}.wl span{background:var(--card);border-radius:12px;padding:3px 10px;font-weight:700;font-size:.9rem}.wl span.ok{background:var(--ok);color:#fff;text-decoration:line-through}.big{font-size:2rem!important;line-height:1.2}.arena{position:relative;height:220px;width:100%;background:var(--card);border-radius:14px;overflow:hidden}.arena .star{position:absolute;font-size:2.2rem;background:none;border:0;cursor:pointer;padding:0}.tray,.dest{display:flex;flex-wrap:wrap;gap:8px;width:100%}.dest .fold{flex:1 1 90px;min-height:90px;border:3px dashed var(--mintb);border-radius:14px;background:var(--card);padding:6px;text-align:center;font-weight:700}.dest .fold.hit{background:var(--mint2)}.file{font-size:2rem;background:var(--card);border:2px solid var(--mintb);border-radius:12px;padding:4px 10px;touch-action:none;cursor:grab;user-select:none}.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:420px}.mem .cd{aspect-ratio:1;font-size:1.6rem;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;border:3px solid var(--mintb);background:var(--lilac);color:var(--lilacf);cursor:pointer;padding:2px;font-weight:700;line-height:1.1}.mem .cd.up{background:var(--card);color:var(--fg)}.mem .cd.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.mem .cd .w{font-size:.8rem}.pw{display:flex;flex-direction:column;gap:3px;font-size:.92rem;width:100%}</style><style>.ex{display:none}.ex.cur{display:block}
+.nav{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.nav #pos{font-weight:700;color:var(--accent)}.nav .btn:disabled{opacity:.4}#nx{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--mintb);background:var(--card);cursor:pointer}#dots i.on{border-color:var(--accent);background:var(--accent)}#dots i.dn{background:var(--ok);border-color:var(--ok)}
+.ordp{display:flex;flex-wrap:wrap;gap:6px;width:100%}.ob:disabled{opacity:.35}.chosen{width:100%;background:var(--lilac);color:var(--lilacf);border-radius:12px;padding:6px 10px;font-size:.92rem;display:flex;flex-direction:column;gap:2px}
+.asg{display:flex;flex-direction:column;gap:6px;width:100%}.arow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;border-bottom:1px dashed var(--mintb);padding-bottom:6px}.an{font-weight:700;flex:1 1 120px}.agr{display:flex;gap:4px;flex-wrap:wrap}.ab{min-height:38px;padding:3px 10px;font-size:.85rem}
+.mem,.pw{width:100%}
+.theory details{margin:4px 0;background:rgba(255,255,255,.35);border-radius:12px;padding:6px 10px}.theory summary{cursor:pointer;font-weight:700}
+@media print{.ex{display:block!important}.nav,#dots{display:none!important}}</style><style>.typ{display:flex;flex-direction:column;gap:8px;width:100%}.trow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.tp{font-size:1.6rem;min-width:70px;flex:1 1 140px;font-weight:700}.tin{font:inherit;font-size:1.1rem;flex:1 1 160px;padding:8px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);min-width:0}
+.hpic{display:flex;justify-content:center;width:100%}.hword{font-size:1.8rem;font-weight:700;letter-spacing:2px;text-align:center;width:100%;word-break:break-word}.hword.lost{color:var(--bad);font-size:1.2rem}.hkb{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;width:100%}.hk{min-width:38px;min-height:42px;padding:2px 6px;font-weight:700}.hk.good{background:var(--ok);color:#fff;border-color:var(--ok)}.hk.bad{background:var(--bad);color:#fff;border-color:var(--bad)}
+.pxg{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:100%;max-width:340px;margin:0 auto}.pxc{aspect-ratio:1;border:1px solid #bbb;border-radius:3px;background:#fff;padding:0;cursor:pointer}.cv{width:100%;aspect-ratio:4/3;background:#fff;border:3px solid var(--mintb);border-radius:14px;touch-action:none;cursor:crosshair}</style>
+</head><body>
+<div class="wrap">
+<header>
+ <h1>🎮 Παίζω με την Πληροφορική ⌨️</h1>
+ <div class="sub">Πληροφορική • Γ΄ Δημοτικού • Πληκτρολόγηση, ζωγραφική και παιχνίδια λέξεων</div>
+ <div class="who"><label>Όνομα: <input id="nm" autocomplete="off"></label><label>Τμήμα: <input id="cl" class="cl" autocomplete="off"></label></div>
+ <div class="prog" id="prog" aria-live="polite"></div>
+ <button class="btn" id="pr">🖨️ Εκτύπωση / PDF</button> <button class="btn" id="fs" hidden>⛶ Πλήρης οθόνη</button><div id="note" class="msg" style="margin-top:6px" aria-live="polite"></div>
+</header>
+<section class="theory"><h2>🎮 Πώς παίζω</h2><p>Κάθε άσκηση είναι μια <b>κάρτα</b>. Λύσε την, πάτα <b>Έλεγξε ✔</b> και μετά <b>Επόμενη ▶</b>. Θα πληκτρολογήσεις, θα ζωγραφίσεις και θα παίξεις κρεμάλα, κρυπτόλεξα και σταυρόλεξα με λέξεις της Πληροφορικής!</p></section>
+
+<main id="exs" class="wrap"></main>
+<div class="nav"><button class="btn" id="pv">◀ Προηγούμενη</button><span id="pos"></span><button class="btn" id="nx">Επόμενη ▶</button></div><div id="dots"></div>
+<div class="fin" id="fin"></div>
+</div>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const shk=e=>{e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')};
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='el-GR';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+const TOTAL=15,doneSet=new Set(),COL=['#2e5fa8','#e4572e','#7a5cc8','#2e9e5b','#e9a100'];
+function upd(){$('#prog').textContent='⭐'.repeat(doneSet.size)+'☆'.repeat(TOTAL-doneSet.size);$('#fin').classList.toggle('on',doneSet.size===TOTAL)}
+upd();
+function ex(n,title,instr,build){
+ const s=el('section','ex');s.id='e'+n;
+ s.innerHTML=`<div class="hd"><div class="num" style="background:${COL[(n-1)%5]}">${n}</div><div class="tt"><h2>${title}</h2>${instr?`<p>${instr}</p>`:''}</div><span class="badge">⭐</span><button class="say" aria-label="Άκουσε">🔊</button></div><div class="body"></div><div class="ft"><button class="btn chk">Έλεγξε ✔</button><span class="msg"></span></div>`;
+ $('#exs').appendChild(s);
+ const b=$('.body',s),qs=[],msg=$('.msg',s);
+ const fin=()=>{if(doneSet.has(n))return;doneSet.add(n);s.classList.add('done');msg.textContent='🎉 Μπράβο!';upd()};
+ $('.say',s).onclick=()=>say(title+'. '+(instr||'').replace(/<[^>]+>/g,''));
+ build(b,q=>{qs.push(q);b.appendChild(q);q.addEventListener('input',()=>q.classList.remove('ok','bad'));q.addEventListener('click',()=>q.classList.remove('ok','bad'));return q},fin);
+ $('.chk',s).onclick=()=>{let all=true;qs.forEach(q=>{const ok=q.isOk();q.classList.toggle('ok',ok);q.classList.toggle('bad',!ok);if(!ok){all=false;shk(q)}});if(all)fin();else msg.textContent='Κοίτα ξανά τα κόκκινα πλαίσια 🙂'};
+}
+const norm=v=>v.trim().toLowerCase().replace(/[“”"]/g,'');
+function choiceQ(add,text,opts,correct){
+ const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);q.val=null;
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{$$('.btn',o).forEach(z=>z.classList.remove('sel'));b.classList.add('sel');q.val=x};o.appendChild(b)});
+ q.isOk=()=>q.val===correct;return add(q)}
+function fillQ(add,html){ // [[ans|alt]] -> input
+ const q=el('div','q');q.innerHTML='<div class="t">'+html.replace(/\[\[(.+?)\]\]/g,(m,a)=>`<input data-a="${a}" inputmode="${/^\d+$/.test(a)?'numeric':'text'}" autocomplete="off"${/^\d+$/.test(a)?'':' class="w"'}>`)+'</div>';
+ q.isOk=()=>$$('input',q).every(i=>i.dataset.a.split('|').includes(norm(i.value)));return add(q)}
+function cyc(c){c.onclick=()=>{c.v=c.v===''?'0':c.v==='0'?'1':'';c.textContent=c.v}}
+function cellsQ(add,pre,n,pred){ // row/grid of cycle cells
+ const q=el('div','q');if(pre)q.appendChild(el('div','t',pre));
+ const g=el('div','gridw full');g.style.setProperty('--n',8);g.style.gridTemplateColumns='repeat(8,1fr)';
+ for(let i=0;i<8;i++){const c=el('button','cell','');c.v='';cyc(c);g.appendChild(c)}q.appendChild(g);
+ q.isOk=()=>pred($$('.cell',g).map(c=>c.v));return add(q)}
+function digitsRow(s,circ){const g=el('div','gridw full');g.style.setProperty('--n',s.length);g.style.gridTemplateColumns=`repeat(${s.length},1fr)`;[...s].forEach(d=>{const c=el(circ?'div':'div','cdig',d);g.appendChild(c)});return g}
+function paintQ(add,pattern,circ){ // click to blacken cells under/over the digits
+ const q=el('div','q');const rows=pattern;const n=rows[0].length;
+ const g=el('div','gridw full');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];
+ rows.forEach(r=>[...r].forEach(d=>{if(circ){const w=el('div','cdig',d);g.appendChild(w)}else{}}));
+ if(circ){const g2=el('div','gridw full');g2.style.setProperty('--n',n);g2.style.gridTemplateColumns=`repeat(${n},1fr)`;[...rows[0]].forEach(d=>{const c=el('button','cell circ','');c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g2.appendChild(c)});q.append(g,g2)}
+ else{rows.forEach(r=>[...r].forEach(d=>{const c=el('button','cell',d);c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g.appendChild(c)}));g.innerHTML='';cells.forEach(c=>g.appendChild(c));q.appendChild(g)}
+ q.isOk=()=>cells.every(c=>c.classList.contains('on')===(c.d==='1'));q.cells=cells;return add(q)}
+function codeGridQ(add,pattern){ // grey cells => write 0/1
+ const q=el('div','q');const n=pattern[0].length;const g=el('div','gridw');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];pattern.forEach(r=>[...r].forEach(d=>{const c=el('button','cell'+(d==='1'?' gy':''),'');c.v='';c.d=d;cyc(c);cells.push(c);g.appendChild(c)}));
+ q.appendChild(g);q.isOk=()=>cells.every(c=>c.v===c.d);q.grid=g;return q}
+function sideQ(add,grid,txt){const q=el('div','q');const s=el('div','side');grid.classList.add('full');s.append(grid,el('div','txt',txt));q.appendChild(s);return q}
+
+// ---------- νέες ασκήσεις ----------
+function textQ(add,label,min,ph){const q=el('div','q');q.innerHTML=(label?`<div class="t lbl">${label}</div>`:'')+`<input class="full" placeholder="${ph||'Γράψε εδώ...'}" autocomplete="off">`;q.isOk=()=>$('input',q).value.trim().length>=(min||3);return add(q)}
+function multiQ(add,text,opts,correct){const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);const sel=new Set();
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{b.classList.toggle('sel');b.classList.contains('sel')?sel.add(x):sel.delete(x)};o.appendChild(b)});
+ q.isOk=()=>sel.size===correct.length&&correct.every(c=>sel.has(c));return add(q)}
+const strip=v=>v.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ς/g,'σ');
+const sent=v=>strip(v).replace(/[.,;!?·«»"'’]/g,'').replace(/\s+/g,' ').trim();
+const CWD=[{"h": 10, "w": 6, "words": [{"a": "ΟΘΟΝΗ", "r": 4, "c": 0, "d": "A", "clue": "Εκεί βλέπουμε εικόνες και γράμματα"}, {"a": "ΗΧΕΙΑ", "r": 4, "c": 4, "d": "D", "clue": "Από εκεί ακούμε τον ήχο"}, {"a": "ΠΟΝΤΙΚΙ", "r": 3, "c": 0, "d": "D", "clue": "Το πατάμε για να κάνουμε κλικ"}, {"a": "ΜΙΚΡΟΦΩΝΟ", "r": 0, "c": 2, "d": "D", "clue": "Μιλάμε σε αυτό για να μας ακούσει ο υπολογιστής"}, {"a": "ΚΑΜΕΡΑ", "r": 0, "c": 0, "d": "A", "clue": "Μας βλέπει και βγάζει φωτογραφίες"}]}, {"h": 7, "w": 9, "words": [{"a": "ΕΙΚΟΝΙΔΙΟ", "r": 3, "c": 0, "d": "A", "clue": "Μικρή εικόνα που ανοίγει ένα πρόγραμμα"}, {"a": "ΚΩΔΙΚΟΣ", "r": 0, "c": 7, "d": "D", "clue": "Μυστικός, για να μπαίνουμε σε λογαριασμό"}, {"a": "ΦΑΚΕΛΟΣ", "r": 0, "c": 0, "d": "D", "clue": "Μέσα του βάζουμε αρχεία"}, {"a": "ΑΡΧΕΙΟ", "r": 1, "c": 0, "d": "A", "clue": "Μια φωτογραφία ή ένα κείμενο στον υπολογιστή"}, {"a": "ΜΕΝΟΥ", "r": 0, "c": 3, "d": "D", "clue": "Λίστα με επιλογές"}]}, {"h": 8, "w": 9, "words": [{"a": "ΕΚΤΥΠΩΤΗΣ", "r": 6, "c": 0, "d": "A", "clue": "Βγάζει τα έγγραφα σε χαρτί"}, {"a": "ΤΑΜΠΛΕΤΑ", "r": 0, "c": 6, "d": "D", "clue": "Συσκευή με οθόνη αφής"}, {"a": "ΠΡΟΓΡΑΜΜΑ", "r": 2, "c": 0, "d": "A", "clue": "Εφαρμογή που τρέχει στον υπολογιστή"}, {"a": "ΙΟΣ", "r": 4, "c": 8, "d": "D", "clue": "Κακόβουλο πρόγραμμα που βλάπτει τον υπολογιστή"}, {"a": "ΔΙΑΔΙΚΤΥΟ", "r": 0, "c": 0, "d": "A", "clue": "Το δίκτυο που ενώνει όλο τον κόσμο"}]}];
+const PALC=['#d62828','#1565c0','#2e9e5b','#f2b300','#ff7a00','#8e44ad','#8b5a2b','#222222','#ffffff'];
+const palette=(onPick)=>{const t=el('div','tools');let cur=PALC[0];PALC.forEach((c,i)=>{const s=el('button','sw'+(i?'':' on'));s.style.background=c;s.setAttribute('aria-label','Χρώμα');s.onclick=()=>{cur=c;$$('.sw',t).forEach(z=>z.classList.remove('on'));s.classList.add('on');onPick&&onPick(c)};t.appendChild(s)});t.get=()=>cur;return t};
+function typeQ(add,rows,opt){opt=opt||{};const q=el('div','q');const box=el('div','typ');const ins=[];
+ rows.forEach(([p,a])=>{const r=el('div','trow');r.appendChild(el('div','tp',p));const i=el('input','tin');i.autocomplete='off';i.setAttribute('autocapitalize','off');i.spellcheck=false;i.placeholder=opt.ph||'γράψε εδώ';i.dataset.a=a;r.appendChild(i);box.appendChild(r);ins.push(i)});
+ q.appendChild(box);q.isOk=()=>ins.every(i=>{const v=i.value;if(opt.sentence)return sent(v)===sent(i.dataset.a);if(opt.upper&&v.trim()!==v.trim().toUpperCase())return false;return strip(v)===strip(i.dataset.a)});return add(q)}
+function drawQ(add,w,h){const q=el('div','q');const cv=el('canvas','cv');cv.width=640;cv.height=480;const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,640,480);
+ const tools=el('div','tools');let col=PALC[0],size=6,erase=false,drew=false;
+ const th=el('button','btn','✏️ Λεπτό'),tk=el('button','btn','🖌️ Χοντρό'),er=el('button','btn','🧽 Γόμα'),cl=el('button','btn','🗑️ Καθαρισμός');
+ PALC.slice(0,8).forEach((c,i)=>{const s=el('button','sw'+(i?'':' on'));s.style.background=c;s.setAttribute('aria-label','Χρώμα');s.onclick=()=>{col=c;erase=false;$$('.sw',tools).forEach(z=>z.classList.remove('on'));s.classList.add('on');er.classList.remove('sel')};tools.appendChild(s)});
+ th.onclick=()=>{size=5;th.classList.add('sel');tk.classList.remove('sel')};tk.onclick=()=>{size=16;tk.classList.add('sel');th.classList.remove('sel')};th.classList.add('sel');
+ er.onclick=()=>{erase=!erase;er.classList.toggle('sel',erase);if(erase)$$('.sw',tools).forEach(z=>z.classList.remove('on'))};
+ cl.onclick=()=>{x.fillStyle='#fff';x.fillRect(0,0,640,480);drew=false};tools.append(th,tk,er,cl);
+ let down=false,lx=0,ly=0;const pos=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*640/r.width,(e.clientY-r.top)*480/r.height]};
+ cv.addEventListener('pointerdown',e=>{down=true;[lx,ly]=pos(e);try{cv.setPointerCapture(e.pointerId)}catch(_){}x.fillStyle=erase?'#fff':col;const w=erase?(size>10?110:60):size;x.beginPath();x.arc(lx,ly,w/2,0,7);x.fill();if(!erase)drew=true});
+ cv.addEventListener('pointermove',e=>{if(!down)return;const[px,py]=pos(e);x.strokeStyle=erase?'#fff':col;x.lineWidth=erase?(size>10?110:60):size;x.lineCap='round';x.lineJoin='round';x.beginPath();x.moveTo(lx,ly);x.lineTo(px,py);x.stroke();lx=px;ly=py;if(!erase)drew=true});
+ ['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>down=false));
+ q.append(tools,cv);q.isOk=()=>drew;return add(q)}
+function hangQ(add,word,hint){const q=el('div','q');const L='ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';const got=new Set();let wrong=0;
+ const parts=['<circle cx="95" cy="40" r="12"/>','<line x1="95" y1="52" x2="95" y2="95"/>','<line x1="95" y1="62" x2="78" y2="82"/>','<line x1="95" y1="62" x2="112" y2="82"/>','<line x1="95" y1="95" x2="80" y2="125"/>','<line x1="95" y1="95" x2="110" y2="125"/>'];
+ const pic=el('div','hpic'),wd=el('div','hword'),ms=el('div','t'),kb=el('div','hkb'),rs=el('button','btn','↺ Ξανά');
+ ms.innerHTML='💡 Βοήθεια: '+hint;
+ const bt={};[...L].forEach(ch=>{const b=el('button','btn hk',ch);b.onclick=()=>{if(b.disabled||over())return;b.disabled=true;got.add(ch);if(!word.includes(ch)){wrong++;b.classList.add('bad')}else b.classList.add('good');draw();q.classList.remove('ok','bad')};bt[ch]=b;kb.appendChild(b)});
+ const won=()=>[...word].every(c=>got.has(c)),over=()=>wrong>=6||won();
+ const draw=()=>{pic.innerHTML=`<svg viewBox="0 0 140 150" width="150" height="160"><g stroke="#5a3a07" stroke-width="4" fill="none" stroke-linecap="round"><line x1="20" y1="140" x2="120" y2="140"/><line x1="45" y1="140" x2="45" y2="12"/><line x1="45" y1="12" x2="95" y2="12"/><line x1="95" y1="12" x2="95" y2="28"/></g><g stroke="#d62828" stroke-width="4" fill="none" stroke-linecap="round">${parts.slice(0,wrong).join('')}</g></svg>`;
+  wd.textContent=[...word].map(c=>got.has(c)||wrong>=6?c:'_').join(' ');if(wrong>=6)wd.textContent+='  — Η λέξη ήταν: '+word;
+  wd.classList.toggle('lost',wrong>=6);if(won())ms.textContent='🎉 Μπράβο! Βρήκες τη λέξη!';else if(wrong>=6)ms.textContent='😅 Έχασες! Πάτα «Ξανά» και ξαναπροσπάθησε.';else ms.textContent='💡 Βοήθεια: '+hint+' • Λάθη: '+wrong+' από 6'};
+ rs.onclick=()=>{got.clear();wrong=0;Object.values(bt).forEach(b=>{b.disabled=false;b.className='btn hk'});draw();q.classList.remove('ok','bad')};
+ q.append(pic,wd,ms,kb,rs);draw();q.isOk=()=>won();return add(q)}
+function wsQ(add,N,W){const q=el('div','q');const wl=el('div','wl');const g=el('div','ws');g.style.gridTemplateColumns=`repeat(${N},1fr)`;g.style.maxWidth=Math.min(N*44,420)+'px';
+ const G=Array.from({length:N},()=>Array(N).fill(''));
+ W.forEach(w=>{for(let t=0;t<500;t++){const d=Math.random()<.5?[0,1]:[1,0],r=Math.random()*(N-(d[0]?w.length:0))|0,c=Math.random()*(N-(d[1]?w.length:0))|0;let ok=1;for(let i=0;i<w.length;i++){const v=G[r+d[0]*i][c+d[1]*i];if(v&&v!==w[i])ok=0}if(ok){for(let i=0;i<w.length;i++)G[r+d[0]*i][c+d[1]*i]=w[i];break}}});
+ const pool='ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΩ';G.forEach(r=>r.forEach((_,j)=>{if(!r[j])r[j]=pool[Math.random()*pool.length|0]}));
+ const found=new Set();let st=null,fc=0;W.forEach(w=>wl.appendChild(el('span','',w)));const cells=[];
+ G.forEach((r,i)=>r.forEach((ch,j)=>{const c=el('button','cell',ch);c.r=i;c.c=j;c.onclick=()=>{
+  if(!st){st=c;c.classList.add('st');return}
+  st.classList.remove('st');const a=st,e=c;st=null;if(a.r!==e.r&&a.c!==e.c){shk(g);return}
+  const dr=Math.sign(e.r-a.r),dc=Math.sign(e.c-a.c),n=Math.max(Math.abs(e.r-a.r),Math.abs(e.c-a.c))+1,path=[];
+  for(let k=0;k<n;k++)path.push(cells[(a.r+dr*k)*N+a.c+dc*k]);
+  const s=path.map(x=>x.textContent).join(''),rs=[...s].reverse().join(''),w=W.find(x=>x===s||x===rs);
+  if(w&&!found.has(w)){found.add(w);const cl='f'+(fc++%8);path.forEach(x=>x.classList.add(cl));[...wl.children].find(x=>x.textContent===w).classList.add('ok');if(found.size===W.length)q.classList.add('ok')}else shk(g)};
+  cells.push(c);g.appendChild(c)}));
+ q.append(wl,g);q.isOk=()=>found.size===W.length;return add(q)}
+function cwQ(add,D){const q=el('div','q');const grid=el('div','cwg');grid.style.gridTemplateColumns=`repeat(${D.w},1fr)`;grid.style.maxWidth=Math.min(D.w*46,440)+'px';
+ const cell={},num={};let nn=0;
+ D.words.slice().sort((a,b)=>a.r-b.r||a.c-b.c).forEach(w=>{const k=w.r+','+w.c;if(!num[k])num[k]=++nn;w.n=num[k];
+  [...w.a].forEach((ch,i)=>{const r=w.r+(w.d==='D'?i:0),c=w.c+(w.d==='A'?i:0),kk=r+','+c;(cell[kk]=cell[kk]||{ch,ws:[]}).ws.push({w,i})})});
+ const inp=[];let cur='A';
+ for(let r=0;r<D.h;r++)for(let c=0;c<D.w;c++){const k=r+','+c,d=cell[k];
+  if(!d){grid.appendChild(el('div','cwx'));continue}
+  const w=el('div','cwc'),i=el('input');i.maxLength=1;i.autocomplete='off';i.setAttribute('aria-label','γράμμα');i.dataset.a=d.ch;d.input=i;
+  if(num[k])w.appendChild(el('span','cwn',num[k]));
+  const pick=()=>{const dirs=d.ws.map(z=>z.w.d);if(!dirs.includes(cur))cur=dirs[0];return d.ws.find(z=>z.w.d===cur)};
+  let wasF=false;i.addEventListener('pointerdown',()=>{wasF=document.activeElement===i});
+  i.addEventListener('click',()=>{const dirs=d.ws.map(z=>z.w.d);if(dirs.length>1&&wasF)cur=cur==='A'?'D':'A';else if(dirs.length===1)cur=dirs[0];else{const st=d.ws.filter(z=>z.i===0);if(st.length===1)cur=st[0].w.d}});
+  i.addEventListener('focus',()=>{if(d.ws.length===1)cur=d.ws[0].w.d});
+  i.addEventListener('beforeinput',e=>{if(e.data&&i.value)i.value=''});
+  i.addEventListener('input',()=>{i.value=i.value.toUpperCase();if(!i.value)return;const x=pick();const nx=cell[(r+(x.w.d==='D'?1:0))+','+(c+(x.w.d==='A'?1:0))];if(nx&&nx.input&&nx.ws.some(z=>z.w===x.w))nx.input.focus()});
+  w.appendChild(i);grid.appendChild(w);inp.push(i)}
+ const cl=el('div','cwl');[['A','➡️ Οριζόντια'],['D','⬇️ Κάθετα']].forEach(([dd,t])=>{const bx=el('div','','<b>'+t+'</b>');D.words.filter(w=>w.d===dd).sort((a,b)=>a.n-b.n).forEach(w=>bx.appendChild(el('div','',`<b>${w.n}.</b> ${w.clue}`)));cl.appendChild(bx)});
+ q.append(grid,cl);const st=v=>v.toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');q.isOk=()=>inp.every(i=>st(i.value)===st(i.dataset.a));return add(q)}
+
+// ---- Πληκτρολόγηση ----
+ex(1,'Γράφω τις λέξεις','Κοίταξε την εικόνα και πληκτρολόγησε τη λέξη.',(b,add)=>{
+ typeQ(add,[['🖥️','οθόνη'],['🖱️','ποντίκι'],['⌨️','πληκτρολόγιο'],['🖨️','εκτυπωτής'],['🎧','ακουστικά']])});
+ex(2,'Αντιγράφω προτάσεις','Πληκτρολόγησε κάθε πρόταση όπως τη βλέπεις.',(b,add)=>{
+ typeQ(add,[['Ο υπολογιστής με βοηθά να μαθαίνω.','Ο υπολογιστής με βοηθά να μαθαίνω.'],['Με το ποντίκι πατάω κλικ.','Με το ποντίκι πατάω κλικ.'],['Γράφω με το πληκτρολόγιο.','Γράφω με το πληκτρολόγιο.']],{sentence:1,ph:'γράψε την πρόταση'})});
+ex(3,'Κεφαλαία γράμματα','Γράψε κάθε λέξη με ΚΕΦΑΛΑΙΑ (πάτα Shift ή Caps Lock).',(b,add)=>{
+ typeQ(add,[['ποντίκι','ΠΟΝΤΙΚΙ'],['οθόνη','ΟΘΟΝΗ'],['αρχείο','ΑΡΧΕΙΟ'],['φάκελος','ΦΑΚΕΛΟΣ']],{upper:1,ph:'ΓΡΑΨΕ ΕΔΩ'})});
+// ---- Ζωγραφική ----
+ex(4,'Ζωγραφίζω τον υπολογιστή μου','Ζωγράφισε έναν υπολογιστή. Άλλαξε χρώμα και πάχος· αν θέλεις να διορθώσεις, πάτα τη γόμα 🧽.',(b,add)=>{drawQ(add)});
+ex(5,'Χρωμάτισε το ρομπότ','Διάλεξε χρώμα και πάτα πάνω σε κάθε μέρος του ρομπότ.',(b,add)=>{
+ const R=[['ball','<circle cx="100" cy="20" r="9"/>'],['head','<rect x="60" y="32" width="80" height="60" rx="14"/>'],['eyeL','<circle cx="82" cy="60" r="10"/>'],['eyeR','<circle cx="118" cy="60" r="10"/>'],['mouth','<rect x="82" y="76" width="36" height="9" rx="3"/>'],['body','<rect x="55" y="98" width="90" height="85" rx="12"/>'],['screen','<rect x="76" y="112" width="48" height="34" rx="5"/>'],['btn','<circle cx="100" cy="163" r="9"/>'],['armL','<rect x="24" y="102" width="26" height="72" rx="12"/>'],['armR','<rect x="150" y="102" width="26" height="72" rx="12"/>'],['legL','<rect x="64" y="188" width="30" height="58" rx="9"/>'],['legR','<rect x="106" y="188" width="30" height="58" rx="9"/>']];
+ const q=el('div','q');let col=PALC[0];const pal=palette(c=>col=c);const box=el('div','pic');
+ box.innerHTML=`<svg viewBox="0 0 200 256" style="width:100%;max-width:260px"><line x1="100" y1="29" x2="100" y2="32" stroke="#222" stroke-width="3"/><g stroke="#222" stroke-width="3">${R.map(([id,s])=>s.replace('/>',` class="rg" data-id="${id}" fill="#eee" style="cursor:pointer"/>`)).join('')}</g></svg>`;
+ const done=new Set();$$('.rg',box).forEach(p=>p.onclick=()=>{p.setAttribute('fill',col);done.add(p.dataset.id);q.classList.remove('ok','bad')});
+ q.append(pal,box);q.isOk=()=>done.size===R.length;add(q)});
+ex(6,'Ζωγραφίζω με pixels','Οι ψηφιακές εικόνες φτιάχνονται από μικρά τετραγωνάκια (pixels). Φτιάξε τη δική σου: ζωγράφισε τουλάχιστον 12 τετραγωνάκια.',(b,add)=>{
+ const q=el('div','q');let col=PALC[0];const pal=palette(c=>col=c);const g=el('div','pxg');const cs=[];
+ for(let i=0;i<100;i++){const c=el('button','pxc','');c.onclick=()=>{c.style.background=col;c.dataset.c=col==='#ffffff'?'':'1';q.classList.remove('ok','bad');cnt()};g.appendChild(c);cs.push(c)}
+ const clr=el('button','btn','🗑️ Καθαρισμός');clr.onclick=()=>{cs.forEach(c=>{c.style.background='';c.dataset.c=''});cnt()};
+ const info=el('div','t','');const cnt=()=>{info.textContent='Τετραγωνάκια που χρωμάτισες: '+cs.filter(c=>c.dataset.c).length};cnt();
+ q.append(pal,g,clr,info);q.isOk=()=>cs.filter(c=>c.dataset.c).length>=12;add(q)});
+// ---- Κρεμάλα ----
+ex(7,'Κρεμάλα 1','Βρες τη λέξη πατώντας γράμματα. Έχεις 6 λάθη!',(b,add)=>{hangQ(add,'ΟΘΟΝΗ','Εκεί βλέπουμε τι κάνει ο υπολογιστής.')});
+ex(8,'Κρεμάλα 2','Βρες τη λέξη πατώντας γράμματα. Έχεις 6 λάθη!',(b,add)=>{hangQ(add,'ΠΟΝΤΙΚΙ','Το κρατάμε στο χέρι και πατάμε κλικ.')});
+ex(9,'Κρεμάλα 3','Βρες τη λέξη πατώντας γράμματα. Έχεις 6 λάθη!',(b,add)=>{hangQ(add,'ΠΛΗΚΤΡΟΛΟΓΙΟ','Έχει γράμματα και αριθμούς.')});
+// ---- Κρυπτόλεξα ----
+ex(10,'Κρυπτόλεξο 1: Συσκευές','Βρες τις 4 λέξεις (→ ↓). Πάτησε το πρώτο και μετά το τελευταίο γράμμα κάθε λέξης.',(b,add)=>{wsQ(add,7,['ΟΘΟΝΗ','ΗΧΕΙΑ','ΠΟΝΤΙΚΙ','ΚΑΜΕΡΑ'])});
+ex(11,'Κρυπτόλεξο 2: Στον υπολογιστή','Βρες τις 5 λέξεις (→ ↓).',(b,add)=>{wsQ(add,8,['ΦΑΚΕΛΟΣ','ΑΡΧΕΙΟ','ΕΙΚΟΝΑ','ΚΩΔΙΚΟΣ','ΜΕΝΟΥ'])});
+ex(12,'Κρυπτόλεξο 3: Τεχνολογία','Βρες τις 5 λέξεις (→ ↓).',(b,add)=>{wsQ(add,9,['ΔΙΑΔΙΚΤΥΟ','ΠΡΟΓΡΑΜΜΑ','ΕΚΤΥΠΩΤΗΣ','ΑΚΟΥΣΤΙΚΑ','ΤΑΜΠΛΕΤΑ'])});
+// ---- Σταυρόλεξα ----
+ex(13,'Σταυρόλεξο 1: Συσκευές','Διάβασε τις ερωτήσεις και γράψε τις λέξεις στα τετραγωνάκια (με κεφαλαία).',(b,add)=>{cwQ(add,CWD[0])});
+ex(14,'Σταυρόλεξο 2: Στον υπολογιστή','Διάβασε τις ερωτήσεις και γράψε τις λέξεις (με κεφαλαία).',(b,add)=>{cwQ(add,CWD[1])});
+ex(15,'Σταυρόλεξο 3: Τεχνολογία','Διάβασε τις ερωτήσεις και γράψε τις λέξεις (με κεφαλαία).',(b,add)=>{cwQ(add,CWD[2])});
+const TH={1:'Βάλε τα δάχτυλά σου στη μεσαία σειρά του πληκτρολογίου και κοίτα την οθόνη.',2:'Μην ξεχνάς κενά ανάμεσα στις λέξεις και τελεία στο τέλος.',3:'Για κεφαλαία πάτα και κράτα το <b>Shift</b> ή πάτα μια φορά το <b>Caps Lock</b>.',4:'Μπορείς να ζωγραφίσεις οθόνη, πληκτρολόγιο και ποντίκι. Η γόμα 🧽 σβήνει τα λάθη.',5:'Κάθε μέρος του ρομπότ μπορεί να έχει διαφορετικό χρώμα.',6:'Κάθε τετραγωνάκι είναι ένα <b>pixel</b>. Πολλά pixels μαζί φτιάχνουν μια εικόνα.',7:'Διάλεξε γράμματα που υπάρχουν συχνά στις λέξεις, όπως Α, Ο, Ι, Ε.',10:'Οι λέξεις κρύβονται <b>οριζόντια</b> (→) ή <b>κάθετα</b> (↓).',13:'Το γράμμα όπου διασταυρώνονται δύο λέξεις είναι κοινό και για τις δύο.'};
+Object.entries(TH).forEach(([n,h])=>{const c=document.getElementById('e'+n);if(!c)return;const hd=c.querySelector('.hd');hd.insertAdjacentElement('afterend',el('div','exth','💡 <b>Συμβουλή:</b> '+h))});
+
+// ---- κάρτες ----
+const cards=$$('.ex');let cur=0;
+const pos=$('#pos'),pv=$('#pv'),nx=$('#nx');
+function show(i){cur=Math.max(0,Math.min(cards.length-1,i));cards.forEach((c,k)=>c.classList.toggle('cur',k===cur));pos.textContent='Άσκηση '+(cur+1)+' από '+cards.length;pv.disabled=cur===0;nx.textContent=cur===cards.length-1?'Τέλος 🏁':'Επόμενη ▶';
+ $('#dots').innerHTML=cards.map((c,k)=>`<i class="${k===cur?'on':''}${doneSet.has(k+1)?' dn':''}" data-k="${k}"></i>`).join('');$$('#dots i').forEach(d=>d.onclick=()=>show(+d.dataset.k));
+ try{cards[cur].scrollIntoView({block:'nearest'})}catch(e){}}
+pv.onclick=()=>show(cur-1);nx.onclick=()=>{if(cur===cards.length-1){$('#fin').scrollIntoView({behavior:'smooth'})}else show(cur+1)};
+$('#exs').addEventListener('click',()=>setTimeout(()=>show(cur),50));
+show(0);
+
+$$('.say').forEach(x=>x.remove());
+const note=t=>{const n=document.getElementById('note');n.textContent=t;clearTimeout(note.t);note.t=setTimeout(()=>n.textContent='',9000)};
+document.getElementById('pr').onclick=()=>{try{window.print()}catch(_){}note('Αν δεν άνοιξε το παράθυρο εκτύπωσης, άνοιξε το φύλλο απευθείας από τη διεύθυνσή του (όχι μέσα από άλλη σελίδα) και πάτησε Ctrl+P.')};
+const _u=upd;upd=function(){_u();const f=$('#fin');if(doneSet.size===TOTAL){const n=($('#nm').value.trim()||'..................').replace(/</g,'');f.innerHTML=`<div class="dip">🏅<b>Δίπλωμα Μικρού Πληροφορικάριου</b>Απονέμεται στον/στην <b>${n}</b> που ολοκλήρωσε όλα τα παιχνίδια της Πληροφορικής!<br>🎮 ⌨️ 🎨 🏆</div>`}};upd();
+
+(function(){const b=document.getElementById('fs'),d=document.documentElement;if(!(d.requestFullscreen||d.webkitRequestFullscreen))return;b.hidden=false;
+ const isF=()=>document.fullscreenElement||document.webkitFullscreenElement;
+ b.onclick=()=>{try{if(isF()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{const p=(d.requestFullscreen||d.webkitRequestFullscreen).call(d);if(p&&p.catch)p.catch(()=>note("Η πλήρης οθόνη δεν επιτρέπεται μέσα σε αυτή τη σελίδα. Άνοιξε το φύλλο απευθείας από τη διεύθυνσή του."))}}catch(e){note("Η πλήρης οθόνη δεν είναι διαθέσιμη εδώ.")}};
+ const u=()=>{b.textContent=isF()?'✖ Έξοδος από πλήρη οθόνη':'⛶ Πλήρης οθόνη'};document.addEventListener('fullscreenchange',u);document.addEventListener('webkitfullscreenchange',u)})();
+</script>
+
+</body></html>

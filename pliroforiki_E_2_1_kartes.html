@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ενότητα 2.1 – Ε΄ Δημοτικού</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap">
+<style>
+:root{--bg:#f3f9fe;--fg:#1d2b3a;--muted:#5b6b7b;--mint:#d6ecfb;--mint2:#c2e2f7;--mintb:#8cc4ec;--card:#ffffff;--accent:#1f5fae;--ok:#1e9e57;--bad:#e4572e;--sel:#ffe9a8;--lilac:#ffe6cc;--lilacb:#f2b36d;--lilacf:#6b3a07;--orange:#fff6c8;--orangeb:#e6cf5a;--orangef:#5a4a00;--ink:#1d2b3a;--shadow:0 2px 8px rgba(30,60,50,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a24;--fg:#e8f1f8;--muted:#a6b9c9;--mint:#1d3347;--mint2:#25415a;--mintb:#4a82ad;--card:#172736;--accent:#8fc0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#5a3a14;--lilacb:#d08a38;--lilacf:#ffe9cf;--orange:#4a4315;--orangeb:#a8942f;--orangef:#fff6c8;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101a24;--fg:#e8f1f8;--muted:#a6b9c9;--mint:#1d3347;--mint2:#25415a;--mintb:#4a82ad;--card:#172736;--accent:#8fc0ff;--ok:#4cd68a;--bad:#ff8a65;--sel:#5a4a14;--lilac:#5a3a14;--lilacb:#d08a38;--lilacf:#ffe9cf;--orange:#4a4315;--orangeb:#a8942f;--orangef:#fff6c8;--shadow:0 2px 8px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"Comfortaa","Comic Sans MS","Trebuchet MS",system-ui,sans-serif;font-size:17px;line-height:1.45;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:14px 16px;text-align:center}
+h1{margin:0;font-size:1.45rem;color:var(--accent);text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin-top:2px}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.who label{display:flex;gap:6px;align-items:center;font-size:.95rem}
+.who input{font:inherit;padding:6px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);min-width:0;width:min(220px,58vw)}
+.who input.cl{width:90px}
+.prog{margin-top:8px;font-size:1.05rem;min-height:1.6rem;letter-spacing:1px;word-break:break-all}
+.theory{background:var(--orange);border:3px solid var(--orangeb);border-radius:22px;padding:14px 16px;color:var(--orangef)}
+.theory h2{margin:0 0 6px;font-size:1.2rem}
+.theory p{margin:6px 0;font-size:.95rem}
+.ex{background:var(--mint);border:3px solid var(--mintb);border-radius:22px;padding:12px;box-shadow:var(--shadow)}
+.ex.done{border-color:var(--ok)}
+.hd{display:flex;gap:10px;align-items:center;margin-bottom:12px;background:var(--lilac);border:3px solid var(--lilacb);border-radius:18px;padding:8px 10px;color:var(--lilacf)}
+.num{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700}
+.tt{flex:1;min-width:0}
+.tt h2{margin:0;font-size:1.05rem;text-wrap:balance}
+.tt p{margin:3px 0 0;font-size:.88rem}
+.say{flex:none;border:0;background:var(--card);border-radius:50%;width:40px;height:40px;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow)}
+.badge{display:none;font-size:1.6rem}
+.ex.done .badge{display:block;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.4)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.shake{animation:shake .35s}
+.body{display:flex;flex-direction:column;gap:8px}
+.q{background:var(--card);border:3px solid transparent;border-radius:16px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:.95rem}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q .t{flex:1 1 200px;min-width:0}
+.btn{font:inherit;border:3px solid var(--mintb);background:var(--card);color:var(--fg);border-radius:14px;padding:5px 12px;cursor:pointer;min-width:44px;min-height:44px}
+.btn.sel{border-color:var(--accent);background:var(--sel)}
+.btn.m0{background:#ffd9d9;border-color:#e57373;color:#1d2b3a}.btn.m1{background:#d9e8ff;border-color:#6c9cf0;color:#1d2b3a}.btn.m2{background:#e6d9ff;border-color:#9b7be0;color:#1d2b3a}.btn.m3{background:#d9f5d9;border-color:#5cc06b;color:#1d2b3a}.btn.m4{background:#ffe9c7;border-color:#e9a100;color:#1d2b3a}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.q input{font:inherit;width:3.4em;text-align:center;padding:4px;border-radius:10px;border:2px solid var(--mintb);background:var(--card);color:var(--fg)}
+.q input.w{width:6.5em}
+.ft{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.msg{font-size:.9rem}
+.chk{background:var(--accent);color:#fff;border-color:var(--accent)}
+.gridw{display:grid;gap:3px;width:100%}
+.gridw.full{max-width:calc(var(--n)*46px)}
+.cell{font:inherit;font-weight:700;font-size:1rem;aspect-ratio:1;min-width:0;padding:0;border:2px solid var(--lilacb);border-radius:8px;background:#fff;color:#1d2b3a;cursor:pointer;display:grid;place-items:center}
+.cell.on{background:#222;color:#fff}
+.cell.gy{background:#b9c1d0}
+.cell.circ{border-radius:50%}
+.cdig{text-align:center;font-weight:700;font-size:1.05rem}
+.side{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;width:100%}
+.side>.gridw{flex:0 0 auto;width:min(100%,calc(var(--n)*44px))}
+.side .txt{flex:1 1 180px;min-width:0;font-size:.92rem}
+.pal{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.sw{min-height:42px;padding:3px 10px;border-radius:21px;border:3px solid #9aa5b8;cursor:pointer;font:inherit;font-size:.78rem;font-weight:700;color:#1d2b3a}
+.sw.on{outline:3px solid var(--fg)}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;width:100%}.mt .col{display:flex;flex-direction:column;gap:8px}
+.mt .btn{font-size:.85rem;font-weight:700;min-height:52px}
+.q textarea,.q input.full{font:inherit;width:100%;padding:8px 10px;border-radius:12px;border:2px solid var(--mintb);background:var(--card);color:var(--fg);text-align:left}.q input.full{flex:1 1 100%}.stair{display:flex;flex-direction:column;gap:6px;width:100%}.stair .q{padding:6px 10px}.lbl{font-weight:700;font-size:.85rem;color:var(--muted)}.story{background:var(--orange);color:var(--orangef);border-radius:14px;padding:10px 12px;font-size:.92rem;width:100%}.cv{width:100%;aspect-ratio:4/3;background:#fff;border-radius:12px;border:3px dashed var(--lilacb);touch-action:none;display:block}.panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}.panels>div{min-width:0}.stars{display:flex;gap:6px;flex-wrap:wrap;width:100%}.star{font-size:2rem;background:none;border:0;cursor:pointer;padding:0 4px;color:#c9a227}.star small{display:block;font-size:.6rem;color:var(--muted)}.code{font-size:.8rem;letter-spacing:2px;line-height:1.6;color:var(--muted)}
+.fin{text-align:center;font-size:1.4rem;display:none}.fin.on{display:block}
+@media(max-width:420px){body{font-size:15.5px}}
+</style><style>
+.sg{display:flex;flex-direction:column;align-items:center;gap:2px}.sg svg{width:54px;height:54px;display:block}
+.sc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;min-width:0;flex:1 1 90px}.sc svg{width:100%;max-width:150px;height:auto}
+.ord{display:flex;flex-wrap:wrap;gap:6px;width:100%}.chosen{width:100%;font-size:.92rem;background:var(--lilac);color:var(--lilacf);border-radius:12px;padding:6px 10px;min-height:2.2em}
+.ws{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:100%;max-width:440px}
+.ws .cell{font-size:.95rem;border-radius:6px;border-width:1px;padding:0;min-height:28px}.ws .cell.f0{background:#ffd9d9}.ws .cell.f1{background:#d9e8ff}.ws .cell.f2{background:#e6d9ff}.ws .cell.f3{background:#d9f5d9}.ws .cell.f4{background:#ffe9c7}.ws .cell.f5{background:#ffd9f0}.ws .cell.f6{background:#d9f5f5}.ws .cell.f7{background:#f0f0c0}.ws .cell.st{outline:3px solid var(--accent)}
+.wl{display:flex;flex-wrap:wrap;gap:6px;width:100%}.wl span{background:var(--card);border-radius:12px;padding:3px 10px;font-weight:700;font-size:.85rem}.wl span.ok{background:var(--ok);color:#fff;text-decoration:line-through}
+.tools{display:flex;flex-wrap:wrap;gap:6px;width:100%;align-items:center}.tools .sw{width:40px;height:40px;min-height:40px;padding:0;border-radius:50%}.tools .sw.on{outline:4px solid var(--fg);outline-offset:1px}.tools .btn{font-size:.85rem}.tools .btn.sel{background:var(--sel)}
+.dip{background:linear-gradient(135deg,#fff6c8,#ffe6cc);color:#5a3a07;border:5px double #e0a030;border-radius:22px;padding:18px 14px;font-size:1rem}.dip b{font-size:1.5rem;display:block;margin:4px 0}
+.ws{max-width:480px}.ws .cell{font-size:.85rem;min-height:0}
+.cwg{display:grid;gap:2px;width:100%;max-width:440px}.cwx{aspect-ratio:1}.cwc{position:relative;aspect-ratio:1}.cwc input{width:100%;height:100%;padding:0;border-radius:6px;border:2px solid var(--lilacb);text-align:center;font:inherit;font-weight:700;font-size:1rem;text-transform:uppercase;background:var(--card);color:var(--fg);min-width:0}.cwn{position:absolute;top:1px;left:3px;font-size:.55rem;font-weight:700;color:var(--muted);pointer-events:none;z-index:1}
+.cwl{display:flex;flex-direction:column;gap:8px;width:100%;font-size:.88rem}.cwl>div{display:flex;flex-direction:column;gap:3px}
+@media print{
+:root:root:root{--bg:#fff;--fg:#1d2b3a;--muted:#5b6b7b;--mint:#d6ecfb;--mintb:#8cc4ec;--card:#fff;--lilac:#ffe6cc;--lilacb:#f2b36d;--lilacf:#6b3a07;--orange:#fff6c8;--orangeb:#e6cf5a;--orangef:#5a4a00;--accent:#1f5fae;--shadow:none;color-scheme:light}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#fff;font-size:13px;padding:0}
+#fs,#pr,.say,.ft,.tools,.badge{display:none!important}
+.ex,.theory,header,.dip{break-inside:avoid}.q{break-inside:avoid}
+.ex{box-shadow:none}.wrap{max-width:none}
+.ws,.cwg{max-width:360px}
+}
+</style>
+<style>.mail{display:flex;flex-direction:column;gap:6px;width:100%}.mrow{text-align:left;width:100%;border-radius:12px}.mrow.sel{background:#ffd9d9;border-color:#d62828}.exth{background:var(--orange);color:var(--orangef);border:2px solid var(--orangeb);border-radius:14px;padding:8px 12px;font-size:.92rem;line-height:1.45;margin:8px 0}.ws{display:grid;gap:2px;width:100%;max-width:420px}.ws .cell{font-size:1rem;border-radius:6px;border-width:1px;padding:0;min-height:0;aspect-ratio:1}.ws .cell.f0{background:#ffd9d9}.ws .cell.f1{background:#d9e8ff}.ws .cell.f2{background:#e6d9ff}.ws .cell.f3{background:#d9f5d9}.ws .cell.f4{background:#ffe9c7}.ws .cell.f5{background:#ffd9f0}.ws .cell.f6{background:#d9f5f5}.ws .cell.f7{background:#f0f0c0}.ws .cell.st{outline:3px solid var(--accent)}.wl{display:flex;flex-wrap:wrap;gap:6px;width:100%}.wl span{background:var(--card);border-radius:12px;padding:3px 10px;font-weight:700;font-size:.9rem}.wl span.ok{background:var(--ok);color:#fff;text-decoration:line-through}.big{font-size:2rem!important;line-height:1.2}.arena{position:relative;height:220px;width:100%;background:var(--card);border-radius:14px;overflow:hidden}.arena .star{position:absolute;font-size:2.2rem;background:none;border:0;cursor:pointer;padding:0}.tray,.dest{display:flex;flex-wrap:wrap;gap:8px;width:100%}.dest .fold{flex:1 1 90px;min-height:90px;border:3px dashed var(--mintb);border-radius:14px;background:var(--card);padding:6px;text-align:center;font-weight:700}.dest .fold.hit{background:var(--mint2)}.file{font-size:2rem;background:var(--card);border:2px solid var(--mintb);border-radius:12px;padding:4px 10px;touch-action:none;cursor:grab;user-select:none}.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:420px}.mem .cd{aspect-ratio:1;font-size:1.6rem;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;border:3px solid var(--mintb);background:var(--lilac);color:var(--lilacf);cursor:pointer;padding:2px;font-weight:700;line-height:1.1}.mem .cd.up{background:var(--card);color:var(--fg)}.mem .cd.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.mem .cd .w{font-size:.8rem}.pw{display:flex;flex-direction:column;gap:3px;font-size:.92rem;width:100%}</style><style>.ex{display:none}.ex.cur{display:block}
+.nav{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.nav #pos{font-weight:700;color:var(--accent)}.nav .btn:disabled{opacity:.4}#nx{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--mintb);background:var(--card);cursor:pointer}#dots i.on{border-color:var(--accent);background:var(--accent)}#dots i.dn{background:var(--ok);border-color:var(--ok)}
+.ordp{display:flex;flex-wrap:wrap;gap:6px;width:100%}.ob:disabled{opacity:.35}.chosen{width:100%;background:var(--lilac);color:var(--lilacf);border-radius:12px;padding:6px 10px;font-size:.92rem;display:flex;flex-direction:column;gap:2px}
+.asg{display:flex;flex-direction:column;gap:6px;width:100%}.arow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;border-bottom:1px dashed var(--mintb);padding-bottom:6px}.an{font-weight:700;flex:1 1 120px}.agr{display:flex;gap:4px;flex-wrap:wrap}.ab{min-height:38px;padding:3px 10px;font-size:.85rem}
+.mem,.pw{width:100%}
+.theory details{margin:4px 0;background:rgba(255,255,255,.35);border-radius:12px;padding:6px 10px}.theory summary{cursor:pointer;font-weight:700}
+@media print{.ex{display:block!important}.nav,#dots{display:none!important}}</style>
+</head><body>
+<div class="wrap">
+<header>
+ <h1>🔐 Ψηφιοποίηση, Δικαιώματα και Πρόσβαση 🖥️</h1>
+ <div class="sub">Πληροφορική • Ε΄ Δημοτικού • Ενότητα 2.1</div>
+ <div class="who"><label>Όνομα: <input id="nm" autocomplete="off"></label><label>Τμήμα: <input id="cl" class="cl" autocomplete="off"></label></div>
+ <div class="prog" id="prog" aria-live="polite"></div>
+ <button class="btn" id="pr">🖨️ Εκτύπωση / PDF</button> <button class="btn" id="fs" hidden>⛶ Πλήρης οθόνη</button><div id="note" class="msg" style="margin-top:6px" aria-live="polite"></div>
+</header>
+<section class="theory"><h2>📖 Θεωρία: τι πρέπει να θυμάμαι</h2>
+<details open><summary>🖥️ Υπολογιστές παντού</summary><p>Υπολογιστής είναι και η <b>ταμπλέτα</b> και το <b>έξυπνο κινητό</b>, γιατί δέχονται εντολές, κάνουν υπολογισμούς και μας δίνουν πληροφορίες. Σχεδόν όλες οι δραστηριότητές μας σήμερα έχουν σχέση με υπολογιστές και εφαρμογές. Βοηθούν στην οργάνωση ενός σχολείου, μιας βιβλιοθήκης ή ενός γραφείου.</p></details>
+<details><summary>⚙️ Η δομή του υπολογιστή</summary><p>Τα βασικά στοιχεία είναι: ο <b>επεξεργαστής</b> (Κεντρική Μονάδα Επεξεργασίας), ο «εγκέφαλος» που κάνει λογικές και αριθμητικές πράξεις· η <b>μνήμη</b>, όπου τοποθετούνται <b>προσωρινά</b> δεδομένα και προγράμματα· τα <b>αποθηκευτικά μέσα</b>, όπου αποθηκεύονται <b>μόνιμα</b>· και οι <b>μονάδες εισόδου/εξόδου</b> (πληκτρολόγιο, οθόνη, ηχεία, ποντίκι), που συνδέουν τον υπολογιστή με τον εξωτερικό κόσμο.</p></details>
+<details><summary>🔧 Εσωτερικά και εξωτερικά μέρη</summary><p>Εσωτερικά στοιχεία είναι αυτά που βρίσκονται μέσα στη θήκη, όπως ο <b>σκληρός δίσκος</b>. Εξωτερικά είναι αυτά που συνδέουμε απ’ έξω, όπως το <b>ποντίκι</b>.</p></details>
+<details><summary>📄 Ψηφιοποίηση κειμένου</summary><p>Ψηφιοποιώ ένα έντυπο κείμενο όταν το μετατρέπω σε ψηφιακό αρχείο. Μπορώ να το κάνω με <b>σαρωτή</b> ή με μια εφαρμογή <b>text scanner</b> στο έξυπνο κινητό (τη βρίσκουμε π.χ. στο Play Store). Το αρχείο μπορεί να είναι <b>pdf</b> ή <b>επεξεργάσιμο</b>. Το επεξεργάσιμο μπορεί να μη βγει τέλειο, αλλά μπορώ να το διαμορφώσω όπως θέλω.</p></details>
+<details><summary>🔑 Δικαιώματα και πρόσβαση</summary><p>Τα <b>δικαιώματα</b> είναι οι ενέργειες που επιτρέπονται σε έναν χρήστη, π.χ. να βλέπει, να επεξεργάζεται ή να διαγράφει αρχεία. Η <b>πρόσβαση</b> είναι ο τρόπος που χρησιμοποιούμε συσκευές, προγράμματα και πληροφορίες· μπορεί να ελεγχθεί και να περιοριστεί. Ένας <b>πόρος</b> είναι κάθε αξιοποιήσιμο στοιχείο: αποθηκευτικό μέσο, δίκτυο, εφαρμογή, αρχείο, ιστοσελίδα.</p></details>
+<details><summary>🛡️ Λογαριασμοί, κωδικοί και ασφάλεια</summary><p>Στο εργαστήριο μπαίνουμε με έναν <b>κωδικό</b> που τον ξέρουν όλοι οι μαθητές. Με έναν δικό μας <b>λογαριασμό χρήστη</b> έχουμε δικό μας περιβάλλον εργασίας και προστατεύουμε τα αρχεία μας· ένας φάκελος «<b>Μόνο για ανάγνωση</b>» επιτρέπει στους άλλους να βλέπουν αλλά όχι να αλλάζουν ή να διαγράφουν. Η <b>διαχείριση πρόσβασης</b> είναι η δημιουργία και διαγραφή λογαριασμών, η ανάθεση δικαιωμάτων και η παρακολούθηση της χρήσης. Η καλή διαχείριση μειώνει τους κινδύνους για τα δεδομένα μας.</p></details>
+<p style="margin-top:10px">Κάθε άσκηση είναι μια <b>κάρτα</b>: λύσε την, πάτα <b>Έλεγξε ✔</b> και μετά <b>Επόμενη ▶</b>. Αν κάνεις λάθος, δοκίμασε ξανά 🙂</p></section>
+
+<main id="exs" class="wrap"></main>
+<div class="nav"><button class="btn" id="pv">◀ Προηγούμενη</button><span id="pos"></span><button class="btn" id="nx">Επόμενη ▶</button></div><div id="dots"></div>
+<div class="fin" id="fin"></div>
+</div>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const shk=e=>{e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')};
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='el-GR';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+const TOTAL=25,doneSet=new Set(),COL=['#2e5fa8','#e4572e','#7a5cc8','#2e9e5b','#e9a100'];
+function upd(){$('#prog').textContent='⭐'.repeat(doneSet.size)+'☆'.repeat(TOTAL-doneSet.size);$('#fin').classList.toggle('on',doneSet.size===TOTAL)}
+upd();
+function ex(n,title,instr,build){
+ const s=el('section','ex');s.id='e'+n;
+ s.innerHTML=`<div class="hd"><div class="num" style="background:${COL[(n-1)%5]}">${n}</div><div class="tt"><h2>${title}</h2>${instr?`<p>${instr}</p>`:''}</div><span class="badge">⭐</span><button class="say" aria-label="Άκουσε">🔊</button></div><div class="body"></div><div class="ft"><button class="btn chk">Έλεγξε ✔</button><span class="msg"></span></div>`;
+ $('#exs').appendChild(s);
+ const b=$('.body',s),qs=[],msg=$('.msg',s);
+ const fin=()=>{if(doneSet.has(n))return;doneSet.add(n);s.classList.add('done');msg.textContent='🎉 Μπράβο!';upd()};
+ $('.say',s).onclick=()=>say(title+'. '+(instr||'').replace(/<[^>]+>/g,''));
+ build(b,q=>{qs.push(q);b.appendChild(q);q.addEventListener('input',()=>q.classList.remove('ok','bad'));q.addEventListener('click',()=>q.classList.remove('ok','bad'));return q},fin);
+ $('.chk',s).onclick=()=>{let all=true;qs.forEach(q=>{const ok=q.isOk();q.classList.toggle('ok',ok);q.classList.toggle('bad',!ok);if(!ok){all=false;shk(q)}});if(all)fin();else msg.textContent='Κοίτα ξανά τα κόκκινα πλαίσια 🙂'};
+}
+const norm=v=>v.trim().toLowerCase().replace(/[“”"]/g,'');
+function choiceQ(add,text,opts,correct){
+ const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);q.val=null;
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{$$('.btn',o).forEach(z=>z.classList.remove('sel'));b.classList.add('sel');q.val=x};o.appendChild(b)});
+ q.isOk=()=>q.val===correct;return add(q)}
+function fillQ(add,html){ // [[ans|alt]] -> input
+ const q=el('div','q');q.innerHTML='<div class="t">'+html.replace(/\[\[(.+?)\]\]/g,(m,a)=>`<input data-a="${a}" inputmode="${/^\d+$/.test(a)?'numeric':'text'}" autocomplete="off"${/^\d+$/.test(a)?'':' class="w"'}>`)+'</div>';
+ q.isOk=()=>$$('input',q).every(i=>i.dataset.a.split('|').includes(norm(i.value)));return add(q)}
+function cyc(c){c.onclick=()=>{c.v=c.v===''?'0':c.v==='0'?'1':'';c.textContent=c.v}}
+function cellsQ(add,pre,n,pred){ // row/grid of cycle cells
+ const q=el('div','q');if(pre)q.appendChild(el('div','t',pre));
+ const g=el('div','gridw full');g.style.setProperty('--n',8);g.style.gridTemplateColumns='repeat(8,1fr)';
+ for(let i=0;i<8;i++){const c=el('button','cell','');c.v='';cyc(c);g.appendChild(c)}q.appendChild(g);
+ q.isOk=()=>pred($$('.cell',g).map(c=>c.v));return add(q)}
+function digitsRow(s,circ){const g=el('div','gridw full');g.style.setProperty('--n',s.length);g.style.gridTemplateColumns=`repeat(${s.length},1fr)`;[...s].forEach(d=>{const c=el(circ?'div':'div','cdig',d);g.appendChild(c)});return g}
+function paintQ(add,pattern,circ){ // click to blacken cells under/over the digits
+ const q=el('div','q');const rows=pattern;const n=rows[0].length;
+ const g=el('div','gridw full');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];
+ rows.forEach(r=>[...r].forEach(d=>{if(circ){const w=el('div','cdig',d);g.appendChild(w)}else{}}));
+ if(circ){const g2=el('div','gridw full');g2.style.setProperty('--n',n);g2.style.gridTemplateColumns=`repeat(${n},1fr)`;[...rows[0]].forEach(d=>{const c=el('button','cell circ','');c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g2.appendChild(c)});q.append(g,g2)}
+ else{rows.forEach(r=>[...r].forEach(d=>{const c=el('button','cell',d);c.d=d;c.onclick=()=>c.classList.toggle('on');cells.push(c);g.appendChild(c)}));g.innerHTML='';cells.forEach(c=>g.appendChild(c));q.appendChild(g)}
+ q.isOk=()=>cells.every(c=>c.classList.contains('on')===(c.d==='1'));q.cells=cells;return add(q)}
+function codeGridQ(add,pattern){ // grey cells => write 0/1
+ const q=el('div','q');const n=pattern[0].length;const g=el('div','gridw');g.style.setProperty('--n',n);g.style.gridTemplateColumns=`repeat(${n},1fr)`;
+ const cells=[];pattern.forEach(r=>[...r].forEach(d=>{const c=el('button','cell'+(d==='1'?' gy':''),'');c.v='';c.d=d;cyc(c);cells.push(c);g.appendChild(c)}));
+ q.appendChild(g);q.isOk=()=>cells.every(c=>c.v===c.d);q.grid=g;return q}
+function sideQ(add,grid,txt){const q=el('div','q');const s=el('div','side');grid.classList.add('full');s.append(grid,el('div','txt',txt));q.appendChild(s);return q}
+
+// ---------- νέες ασκήσεις ----------
+function textQ(add,label,min,ph){const q=el('div','q');q.innerHTML=(label?`<div class="t lbl">${label}</div>`:'')+`<input class="full" placeholder="${ph||'Γράψε εδώ...'}" autocomplete="off">`;q.isOk=()=>$('input',q).value.trim().length>=(min||3);return add(q)}
+function multiQ(add,text,opts,correct){const q=el('div','q',`<div class="t">${text}</div>`),o=el('div','opts');q.appendChild(o);const sel=new Set();
+ opts.forEach(x=>{const b=el('button','btn',x);b.onclick=()=>{b.classList.toggle('sel');b.classList.contains('sel')?sel.add(x):sel.delete(x)};o.appendChild(b)});
+ q.isOk=()=>sel.size===correct.length&&correct.every(c=>sel.has(c));return add(q)}
+// ---------- Β΄ υπολογιστής ----------
+const sigQ=(add,t,c)=>choiceQ(add,t,['👍 Σωστό','👎 Λάθος'],c==='Σ'?'👍 Σωστό':'👎 Λάθος');
+const matchQ=(add,P,big)=>{const q=el('div','q');const m=el('div','mt');const L=el('div','col'),R=el('div','col');m.append(L,R);
+ let sel=null,k=0;const pairs={};
+ P.forEach(([l],i)=>{const bt=el('button','btn'+(big?' big':''),l);bt.dataset.k=i;bt.onclick=()=>{if(bt.cls){delete pairs[i];$$('.btn',R).forEach(z=>{if(z.pc===String(i)){z.className='btn';z.pc=null}});bt.className='btn'+(big?' big':'');bt.cls=null}$$('.sel',L).forEach(z=>z.classList.remove('sel'));bt.classList.add('sel');sel=bt};L.appendChild(bt)});
+ shuffle(P.map((p,i)=>[p[1],i])).forEach(([n,i])=>{const bt=el('button','btn',n);bt.onclick=()=>{if(!sel)return;
+  Object.keys(pairs).forEach(kk=>{if(pairs[kk]===i){const l=$(`[data-k="${kk}"]`,L);l.className='btn'+(big?' big':'');l.cls=null;delete pairs[kk]}});
+  $$('.btn',R).forEach(z=>{if(z.pc===sel.dataset.k){z.className='btn';z.pc=null}});
+  const c='m'+(k++%5);sel.className='btn'+(big?' big ':' ')+c;sel.cls=c;bt.className='btn '+c;bt.pc=sel.dataset.k;pairs[+sel.dataset.k]=i;sel=null};R.appendChild(bt)});
+ q.appendChild(m);q.isOk=()=>P.every((p,i)=>pairs[i]===i);add(q)};
+const strip=v=>v.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+
+const sh=a=>shuffle(a);
+function orderQ(add,steps,label){const q=el('div','q');q.appendChild(el('div','t',label||'Πάτησε τα βήματα με τη σωστή σειρά.'));
+ const pool=el('div','ordp'),ch=el('div','chosen'),got=[];
+ const bt=sh(steps).map(t=>{const b=el('button','btn ob',t);b.onclick=()=>{if(b.disabled)return;b.disabled=true;got.push(t);draw();q.classList.remove('ok','bad')};pool.appendChild(b);return b});
+ const rs=el('button','btn','↺ Ξανά');rs.onclick=()=>{got.length=0;bt.forEach(b=>b.disabled=false);draw();q.classList.remove('ok','bad')};
+ const draw=()=>{ch.innerHTML=got.length?got.map((t,i)=>`<div><b>${i+1}.</b> ${t}</div>`).join(''):'<i>Η σειρά σου θα εμφανιστεί εδώ…</i>'};draw();
+ q.append(pool,ch,rs);q.isOk=()=>got.length===steps.length&&steps.every((t,i)=>got[i]===t);return add(q)}
+function assignQ(add,items,cats){const q=el('div','q');const box=el('div','asg');const val=new Array(items.length).fill(null);
+ items.forEach(([name,c],i)=>{const r=el('div','arow');r.appendChild(el('span','an',name));const g=el('div','agr');cats.forEach(k=>{const b=el('button','btn ab',k);b.onclick=()=>{val[i]=k;$$('.ab',g).forEach(z=>z.classList.remove('sel'));b.classList.add('sel');q.classList.remove('ok','bad')};g.appendChild(b)});r.appendChild(g);box.appendChild(r)});
+ q.appendChild(box);q.isOk=()=>items.every(([n,c],i)=>val[i]===c);return add(q)}
+const Cq=(add,t,o,c)=>choiceQ(add,t,sh(o),c);
+const Mq=(add,t,o,c)=>multiQ(add,t,sh(o),c);
+
+ex(1,'Τα βασικά στοιχεία του υπολογιστή','Διάλεξε <b>και τα 4</b> σωστά στοιχεία.',(b,add)=>{
+ const ok=['Επεξεργαστής (Κεντρική Μονάδα Επεξεργασίας)','Μνήμη','Αποθηκευτικά μέσα','Μονάδες Εισόδου/Εξόδου (I/O)'];
+ Mq(add,'Ποια είναι τα <b>βασικά στοιχεία</b> της δομής ενός υπολογιστή;',[...ok,'Η ταπετσαρία της οθόνης','Το τραπέζι του υπολογιστή'],ok)});
+ex(2,'Ποιος κάνει τι;','Αντιστοίχισε κάθε στοιχείο με τον ρόλο του. Πάτα αριστερά και μετά δεξιά.',(b,add)=>{
+ matchQ(add,[['Επεξεργαστής','«Εγκέφαλος» που κάνει πράξεις'],['Μνήμη','Προσωρινά δεδομένα και προγράμματα'],['Αποθηκευτικά μέσα','Μόνιμη αποθήκευση'],['Μονάδες I/O','Σύνδεση με τον εξωτερικό κόσμο']])});
+ex(3,'Εσωτερικά ή εξωτερικά;','Για κάθε εξάρτημα, διάλεξε πού βρίσκεται.',(b,add)=>{
+ assignQ(add,[['Σκληρός δίσκος','Εσωτερικό'],['Ποντίκι','Εξωτερικό'],['Επεξεργαστής','Εσωτερικό'],['Μνήμη RAM','Εσωτερικό'],['Οθόνη','Εξωτερικό'],['Πληκτρολόγιο','Εξωτερικό'],['Ηχεία','Εξωτερικό']],['Εσωτερικό','Εξωτερικό'])});
+ex(4,'Είσοδος ή έξοδος;','Για κάθε συσκευή, διάλεξε τον ρόλο της.',(b,add)=>{
+ assignQ(add,[['Πληκτρολόγιο','Είσοδος'],['Οθόνη','Έξοδος'],['Ηχεία','Έξοδος'],['Ποντίκι','Είσοδος'],['Μικρόφωνο','Είσοδος'],['Εκτυπωτής','Έξοδος'],['Σαρωτής','Είσοδος']],['Είσοδος','Έξοδος'])});
+ex(5,'Οι υπολογιστές γύρω μας','Πάτησε 👍 ή 👎.',(b,add)=>{
+ sigQ(add,'Η ταμπλέτα είναι κι αυτή υπολογιστής.','Σ');
+ sigQ(add,'Το έξυπνο κινητό τηλέφωνο είναι κι αυτό υπολογιστής.','Σ');
+ sigQ(add,'Οι υπολογιστές χρησιμοποιούνται μόνο για παιχνίδια.','Λ');
+ sigQ(add,'Ένας υπολογιστής βοηθά στην οργάνωση ενός σχολείου, μιας βιβλιοθήκης ή ενός γραφείου.','Σ');
+ sigQ(add,'Σχεδόν όλες οι σημερινές δραστηριότητες έχουν σχέση με υπολογιστές και εφαρμογές.','Σ')});
+ex(6,'Ποιο είναι υπολογιστής;','Διάλεξε <b>όλες</b> τις σωστές συσκευές.',(b,add)=>{
+ const ok=['Επιτραπέζιος υπολογιστής','Ταμπλέτα','Έξυπνο κινητό τηλέφωνο','Φορητός υπολογιστής'];
+ Mq(add,'Ποιες συσκευές μπορούν να κάνουν υπολογισμούς, να δέχονται εντολές και να μας δίνουν πληροφορίες;',[...ok,'Ρολόι τοίχου με δείκτες','Κουτάλι'],ok)});
+ex(7,'Τι είναι η ψηφιοποίηση;','Διάλεξε τη σωστή απάντηση.',(b,add)=>{
+ Cq(add,'Ψηφιοποιώ ένα κείμενο σημαίνει:',['Το μετατρέπω σε ψηφιακό αρχείο στον υπολογιστή','Το τυπώνω σε χαρτί','Το σκίζω'],'Το μετατρέπω σε ψηφιακό αρχείο στον υπολογιστή');
+ Cq(add,'Ποια συσκευή του εργαστηρίου μπορεί να ψηφιοποιήσει μια φωτοτυπία;',['Ο σαρωτής','Τα ηχεία','Το πληκτρολόγιο'],'Ο σαρωτής')});
+ex(8,'Σαρώνω ένα έγγραφο','Βάλε τα βήματα με τη σωστή σειρά.',(b,add)=>{
+ orderQ(add,['Τοποθετώ το έντυπο στον σαρωτή','Ξεκινώ τη σάρωση','Επιλέγω τη μορφή του αρχείου (pdf ή επεξεργάσιμο)','Αποθηκεύω το αρχείο στον υπολογιστή'])});
+ex(9,'PDF ή επεξεργάσιμο αρχείο;','Διάλεξε τη σωστή απάντηση.',(b,add)=>{
+ Cq(add,'Θέλω να μπορώ να <b>αλλάζω</b> το κείμενο μετά τη σάρωση. Τι επιλέγω;',['Επεξεργάσιμο αρχείο','Μόνο εκτύπωση','Κανένα από τα δύο'],'Επεξεργάσιμο αρχείο');
+ Cq(add,'Αν το αποτέλεσμα στο επεξεργάσιμο αρχείο δεν είναι τέλειο, τι μπορώ να κάνω;',['Να το διαμορφώσω όπως θέλω','Τίποτα, δεν αλλάζει','Να σβήσω τον υπολογιστή'],'Να το διαμορφώσω όπως θέλω')});
+ex(10,'Σάρωση με το κινητό','Διάλεξε τη σωστή απάντηση.',(b,add)=>{
+ Cq(add,'Ποιο είδος εφαρμογής μας βοηθά να ψηφιοποιήσουμε κείμενο με το κινητό;',['Εφαρμογή text scanner','Εφαρμογή ξυπνητηριού','Εφαρμογή μετρητή βημάτων'],'Εφαρμογή text scanner');
+ Cq(add,'Πού τη βρίσκουμε σε ένα κινητό Android;',['Στο Play Store','Στον εκτυπωτή','Στην ταπετσαρία'],'Στο Play Store')});
+ex(11,'Δικαιώματα και πρόσβαση','Αντιστοίχισε κάθε έννοια με τη σημασία της.',(b,add)=>{
+ matchQ(add,[['Δικαιώματα','Οι επιτρεπόμενες ενέργειες του χρήστη'],['Πρόσβαση','Χρήση συσκευών, προγραμμάτων και πληροφοριών'],['Πόρος','Αρχείο, εφαρμογή, αποθηκευτικό μέσο, δίκτυο'],['Διαχείριση πρόσβασης','Οργάνωση και έλεγχος της πρόσβασης']])});
+ex(12,'Τι είναι «πόρος»;','Διάλεξε <b>όλα</b> τα σωστά.',(b,add)=>{
+ const ok=['Ένα αρχείο','Μια εφαρμογή','Ένα αποθηκευτικό μέσο','Μια ιστοσελίδα στον Παγκόσμιο Ιστό'];
+ Mq(add,'Πόρος είναι οποιοδήποτε αξιοποιήσιμο υλικό ή άυλο στοιχείο. Ποια είναι πόροι;',[...ok,'Το χρώμα του τοίχου','Ο καιρός έξω'],ok)});
+ex(13,'Σωστό ή λάθος;','Πάτησε 👍 ή 👎.',(b,add)=>{
+ sigQ(add,'Τα δικαιώματα ορίζουν τι επιτρέπεται να κάνει κάθε χρήστης.','Σ');
+ sigQ(add,'Όλοι οι χρήστες έχουν πάντα τα ίδια δικαιώματα.','Λ');
+ sigQ(add,'Η πρόσβαση μπορεί να ελεγχθεί και να περιοριστεί.','Σ');
+ sigQ(add,'Η καλή διαχείριση δικαιωμάτων μειώνει τον κίνδυνο παραβιάσεων ασφάλειας.','Σ');
+ sigQ(add,'Δεν χρειάζεται να προσέχουμε τα δικαιώματα σε έναν υπολογιστή.','Λ')});
+ex(14,'Συμπλήρωσε τα κενά','Γράψε τη σωστή λέξη (με μικρά γράμματα).',(b,add)=>{
+ fillQ(add,'Τα [[δικαιώματα]] ορίζουν τι επιτρέπεται να κάνει ο χρήστης.');
+ fillQ(add,'Η [[πρόσβαση|προσβαση]] σε αρχεία και προγράμματα μπορεί να περιοριστεί.');
+ fillQ(add,'Για να μπω στους υπολογιστές του εργαστηρίου πληκτρολογώ έναν [[κωδικό|κωδικο]].');
+ fillQ(add,'Ο δικός μου [[λογαριασμός|λογαριασμος]] χρήστη μου δίνει δικό μου περιβάλλον εργασίας.')});
+ex(15,'Ο κωδικός του εργαστηρίου','Διάλεξε τη σωστή απάντηση.',(b,add)=>{
+ Cq(add,'Γιατί δεν αλλάζουμε τον κωδικό των υπολογιστών του εργαστηρίου;',['Γιατί πρέπει να τον γνωρίζουν και οι άλλοι μαθητές για να έχουν πρόσβαση','Γιατί απαγορεύεται να γράφουμε κωδικούς','Γιατί οι κωδικοί δεν αλλάζουν ποτέ'],'Γιατί πρέπει να τον γνωρίζουν και οι άλλοι μαθητές για να έχουν πρόσβαση');
+ Cq(add,'Πού μπορώ να αλλάξω κωδικό;',['Στις δικές μου συσκευές στο σπίτι','Στους υπολογιστές όλης της τάξης','Σε οποιονδήποτε υπολογιστή του σχολείου'],'Στις δικές μου συσκευές στο σπίτι')});
+ex(16,'Ο δικός μου λογαριασμός','Διάλεξε τη σωστή απάντηση.',(b,add)=>{
+ Cq(add,'Τι μου δίνει ένας δικός μου λογαριασμός χρήστη στο λειτουργικό σύστημα;',['Δικό μου περιβάλλον εργασίας και προστασία των αρχείων μου','Περισσότερη μνήμη RAM','Νέα οθόνη'],'Δικό μου περιβάλλον εργασίας και προστασία των αρχείων μου');
+ Cq(add,'Ποιον ζητάω να τον δημιουργήσει στο εργαστήριο;',['Την/τον εκπαιδευτικό','Τον διπλανό μου','Τον εκτυπωτή'],'Την/τον εκπαιδευτικό')});
+ex(17,'Μόνο για ανάγνωση','Διάλεξε τις σωστές απαντήσεις.',(b,add)=>{
+ Cq(add,'Ο φάκελός μου είναι «Μόνο για ανάγνωση». Τι μπορούν να κάνουν οι άλλοι;',['Να βλέπουν τα αρχεία μου','Να διαγράφουν τα αρχεία μου','Να αλλάζουν τα αρχεία μου'],'Να βλέπουν τα αρχεία μου');
+ Mq(add,'Τι <b>δεν</b> μπορούν να κάνουν; (διάλεξε όλα τα σωστά)',['Να τα διαγράψουν','Να τα επεξεργαστούν','Να τα δουν'],['Να τα διαγράψουν','Να τα επεξεργαστούν'])});
+ex(18,'Το πληροφοριακό σύστημα του σχολείου','Διάλεξε τις σωστές απαντήσεις.',(b,add)=>{
+ Cq(add,'Πώς μπαίνει ένας εκπαιδευτικός στο πληροφοριακό σύστημα του σχολείου;',['Με τους δικούς του κωδικούς','Χωρίς κωδικό, όποτε θέλει','Με τον κωδικό ενός μαθητή'],'Με τους δικούς του κωδικούς');
+ Mq(add,'Τι καταχωρίζουν εκεί οι εκπαιδευτικοί; (διάλεξε όλα τα σωστά)',['Ονόματα μαθητών','Απουσίες','Βαθμούς','Τον καιρό'],['Ονόματα μαθητών','Απουσίες','Βαθμούς'])});
+ex(19,'Γιατί δεν μπορώ να διαγράψω;','Σκέψου και διάλεξε.',(b,add)=>{
+ Cq(add,'Στον υπολογιστή του εργαστηρίου προσπαθείς να διαγράψεις ένα πρόγραμμα από τον Πίνακα Ελέγχου και δεν μπορείς. Γιατί;',['Δεν έχω αυτό το δικαίωμα ως χρήστης','Χάλασε η οθόνη','Ο υπολογιστής δεν έχει μνήμη'],'Δεν έχω αυτό το δικαίωμα ως χρήστης');
+ Cq(add,'Ποιος ορίζει ποιες ενέργειες επιτρέπονται;',['Το λειτουργικό σύστημα με τη διαχείριση δικαιωμάτων','Το ποντίκι','Ο εκτυπωτής'],'Το λειτουργικό σύστημα με τη διαχείριση δικαιωμάτων')});
+ex(20,'Ποιος μπορεί τι;','Αντιστοίχισε κάθε ρόλο με αυτό που κάνει.',(b,add)=>{
+ matchQ(add,[['Μαθητής','Χρησιμοποιεί τα προγράμματα του εργαστηρίου'],['Εκπαιδευτικός','Μπαίνει στο σύστημα με δικούς του κωδικούς'],['Διαχειριστής','Δημιουργεί λογαριασμούς και δίνει δικαιώματα']])});
+ex(21,'Υπεύθυνη χρήση','Πάτησε 👍 ή 👎.',(b,add)=>{
+ sigQ(add,'Δίνω τον προσωπικό μου κωδικό σε οποιονδήποτε φίλο μου.','Λ');
+ sigQ(add,'Χρησιμοποιώ τον υπολογιστή με ασφαλή και υπεύθυνο τρόπο.','Σ');
+ sigQ(add,'Όταν δεν έχω δικαίωμα να κάνω κάτι, ρωτάω την/τον εκπαιδευτικό.','Σ');
+ sigQ(add,'Πειράζω τα αρχεία των άλλων μαθητών.','Λ')});
+ex(22,'Ο υπολογιστής στην υπηρεσία μας','Διάλεξε <b>όλα</b> τα σωστά.',(b,add)=>{
+ const ok=['Καταχώριση βαθμών και απουσιών στο σχολείο','Κατάλογος βιβλίων σε μια βιβλιοθήκη','Αρχεία και έγγραφα σε ένα γραφείο'];
+ Mq(add,'Πώς μπορεί να βοηθήσει ένας υπολογιστής στην οργάνωση;',[...ok,'Δεν μπορεί να βοηθήσει σε τίποτα'],ok)});
+ex(23,'Προσωρινά ή μόνιμα;','Διάλεξε τη σωστή απάντηση.',(b,add)=>{
+ Cq(add,'Πού τοποθετούνται <b>προσωρινά</b> τα δεδομένα και τα προγράμματα;',['Στη μνήμη','Στον σαρωτή','Στα ηχεία'],'Στη μνήμη');
+ Cq(add,'Πού αποθηκεύονται <b>μόνιμα</b> τα δεδομένα και τα προγράμματα;',['Στα αποθηκευτικά μέσα','Στην οθόνη','Στο πληκτρολόγιο'],'Στα αποθηκευτικά μέσα');
+ Cq(add,'Ποιο εξάρτημα εκτελεί λογικές και αριθμητικές πράξεις;',['Ο επεξεργαστής','Ο εκτυπωτής','Το ποντίκι'],'Ο επεξεργαστής')});
+ex(24,'Ποιος είμαι;','Διάβασε το αίνιγμα και διάλεξε.',(b,add)=>{
+ Cq(add,'«Είμαι ο «εγκέφαλος» του υπολογιστή και κάνω πράξεις.»',['Ο επεξεργαστής','Η οθόνη','Το ποντίκι'],'Ο επεξεργαστής');
+ Cq(add,'«Συνδέω τον υπολογιστή με τον εξωτερικό κόσμο: πληκτρολόγιο, οθόνη, ηχεία.»',['Οι μονάδες εισόδου/εξόδου','Η μνήμη','Ο σκληρός δίσκος'],'Οι μονάδες εισόδου/εξόδου');
+ Cq(add,'«Κρατάω μόνιμα τα προγράμματα και τα αρχεία σου.»',['Το αποθηκευτικό μέσο','Το ηχείο','Ο σαρωτής'],'Το αποθηκευτικό μέσο')});
+ex(25,'Βρες τον ξένο','Ποιο δεν ταιριάζει με τα άλλα;',(b,add)=>{
+ Cq(add,'Διάλεξε τον «ξένο» (μονάδες εισόδου):',['Πληκτρολόγιο','Ποντίκι','Σαρωτής','Οθόνη'],'Οθόνη');
+ Cq(add,'Διάλεξε τον «ξένο» (αποθηκευτικά μέσα):',['Σκληρός δίσκος','Μνήμη USB','SSD','Ηχεία'],'Ηχεία');
+ Cq(add,'Διάλεξε τον «ξένο» (έννοιες ασφάλειας):',['Δικαιώματα','Πρόσβαση','Κωδικός','Εκτυπωτής'],'Εκτυπωτής')});
+
+const TH={
+1:'Ένας υπολογιστής έχει: <b>επεξεργαστή</b> (ΚΜΕ), <b>μνήμη</b>, <b>αποθηκευτικά μέσα</b> και <b>μονάδες εισόδου/εξόδου</b>.',
+2:'Ο επεξεργαστής είναι ο «εγκέφαλος». Η μνήμη κρατά προσωρινά δεδομένα. Τα αποθηκευτικά μέσα κρατούν μόνιμα. Οι μονάδες I/O συνδέουν τον υπολογιστή με τον κόσμο.',
+3:'<b>Εσωτερικά</b> είναι τα μέρη μέσα στη θήκη (π.χ. σκληρός δίσκος). <b>Εξωτερικά</b> συνδέονται απ’ έξω (π.χ. ποντίκι).',
+4:'<b>Είσοδος</b>: δίνω πληροφορίες στον υπολογιστή. <b>Έξοδος</b>: ο υπολογιστής μου τις δείχνει ή τις τυπώνει.',
+5:'Υπολογιστής είναι και η <b>ταμπλέτα</b> και το <b>έξυπνο κινητό</b>: δέχονται εντολές, κάνουν υπολογισμούς και μας δίνουν πληροφορίες.',
+6:'Κάθε συσκευή που δέχεται εντολές, τις επεξεργάζεται και μας δίνει πληροφορίες είναι υπολογιστής.',
+7:'<b>Ψηφιοποίηση</b> = μετατρέπω κάτι (π.χ. ένα έντυπο κείμενο) σε ψηφιακό αρχείο. Μπορώ να χρησιμοποιήσω <b>σαρωτή</b>.',
+8:'Σαρώνω: βάζω το έγγραφο, ξεκινώ τη σάρωση, διαλέγω τη μορφή και αποθηκεύω το αρχείο.',
+9:'Το αρχείο μπορεί να είναι <b>pdf</b> ή <b>επεξεργάσιμο</b>. Το επεξεργάσιμο μπορεί να μη βγει τέλειο, αλλά μπορώ να το διαμορφώσω όπως θέλω.',
+10:'Και τα έξυπνα κινητά ψηφιοποιούν κείμενο με εφαρμογές <b>text scanner</b>, που βρίσκουμε στα καταστήματα εφαρμογών (π.χ. Play Store).',
+11:'<b>Δικαιώματα</b>: τι επιτρέπεται στον χρήστη. <b>Πρόσβαση</b>: χρήση συσκευών, προγραμμάτων, πληροφοριών. <b>Πόρος</b>: κάθε αξιοποιήσιμο στοιχείο.',
+12:'<b>Πόρος</b>: αποθηκευτικό μέσο, δίκτυο, εφαρμογή, αρχείο, ιστοσελίδα, αρχεία προγραμμάτων.',
+13:'Τα δικαιώματα διαφέρουν από χρήστη σε χρήστη. Η καλή διαχείρισή τους μειώνει τους κινδύνους για την ασφάλεια των δεδομένων.',
+14:'Θυμάμαι: <b>δικαιώματα</b> (τι επιτρέπεται), <b>πρόσβαση</b> (τι μπορώ να χρησιμοποιήσω), <b>κωδικός</b>, <b>λογαριασμός χρήστη</b>.',
+15:'Στο εργαστήριο ο κωδικός πρέπει να τον ξέρουν όλοι οι μαθητές, γι’ αυτό δεν τον αλλάζουμε. Στις δικές μας συσκευές στο σπίτι μπορούμε.',
+16:'Ο δικός μας <b>λογαριασμός χρήστη</b> μας δίνει δικό μας περιβάλλον εργασίας και προστατεύει τα αρχεία μας από αλλαγές.',
+17:'Με δικαίωμα <b>«Μόνο για ανάγνωση»</b> οι άλλοι βλέπουν τα αρχεία μας αλλά δεν μπορούν να τα μετατρέψουν, να τα διαγράψουν ή να τα επεξεργαστούν.',
+18:'Στο πληροφοριακό σύστημα του σχολείου η πρόσβαση είναι <b>ελεγχόμενη</b>: κάθε εκπαιδευτικός μπαίνει με τους δικούς του κωδικούς.',
+19:'Δεν μπορούμε να διαγράψουμε προγράμματα στο εργαστήριο, γιατί ως μαθητές δεν έχουμε αυτό το <b>δικαίωμα</b>.',
+20:'<b>Διαχείριση πρόσβασης</b>: δημιουργία και διαγραφή λογαριασμών, ανάθεση δικαιωμάτων και παρακολούθηση της χρήσης του συστήματος.',
+21:'Πρέπει να γνωρίζουμε τα δικαιώματά μας και να χρησιμοποιούμε τον υπολογιστή με <b>ασφαλή και υπεύθυνο</b> τρόπο.',
+22:'Οι υπολογιστές βοηθούν στην οργάνωση σχολείων, βιβλιοθηκών και γραφείων.',
+23:'Μνήμη = προσωρινά. Αποθηκευτικά μέσα = μόνιμα. Επεξεργαστής = πράξεις.',
+24:'Ο επεξεργαστής είναι ο «εγκέφαλος». Οι μονάδες I/O συνδέουν τον υπολογιστή με τον έξω κόσμο.',
+25:'Σκέψου ποιες συσκευές δίνουν πληροφορίες (είσοδος), ποιες τις δείχνουν (έξοδος) και ποιες τις αποθηκεύουν.'};
+Object.entries(TH).forEach(([n,h])=>{const c=document.getElementById('e'+n);if(!c)return;const hd=c.querySelector('.hd');hd.insertAdjacentElement('afterend',el('div','exth','💡 <b>Θυμάμαι:</b> '+h))});
+// ---- κάρτες ----
+const cards=$$('.ex');let cur=0;
+const pos=$('#pos'),pv=$('#pv'),nx=$('#nx');
+function show(i){cur=Math.max(0,Math.min(cards.length-1,i));cards.forEach((c,k)=>c.classList.toggle('cur',k===cur));pos.textContent='Άσκηση '+(cur+1)+' από '+cards.length;pv.disabled=cur===0;nx.textContent=cur===cards.length-1?'Τέλος 🏁':'Επόμενη ▶';
+ $('#dots').innerHTML=cards.map((c,k)=>`<i class="${k===cur?'on':''}${doneSet.has(k+1)?' dn':''}" data-k="${k}"></i>`).join('');$$('#dots i').forEach(d=>d.onclick=()=>show(+d.dataset.k));
+ try{cards[cur].scrollIntoView({block:'nearest'})}catch(e){}}
+pv.onclick=()=>show(cur-1);nx.onclick=()=>{if(cur===cards.length-1){$('#fin').scrollIntoView({behavior:'smooth'})}else show(cur+1)};
+$('#exs').addEventListener('click',()=>setTimeout(()=>show(cur),50));
+show(0);
+
+$$('.say').forEach(x=>x.remove());
+const note=t=>{const n=document.getElementById('note');n.textContent=t;clearTimeout(note.t);note.t=setTimeout(()=>n.textContent='',9000)};
+document.getElementById('pr').onclick=()=>{try{window.print()}catch(_){}note('Αν δεν άνοιξε το παράθυρο εκτύπωσης, άνοιξε το φύλλο απευθείας από τη διεύθυνσή του (όχι μέσα από άλλη σελίδα) και πάτησε Ctrl+P.')};
+const _u=upd;upd=function(){_u();const f=$('#fin');if(doneSet.size===TOTAL){const n=($('#nm').value.trim()||'..................').replace(/</g,'');f.innerHTML=`<div class="dip">🏅<b>Δίπλωμα Ψηφιακού Τεχνικού</b>Απονέμεται στον/στην <b>${n}</b> που ολοκλήρωσε και τις 25 ασκήσεις της ενότητας 2.1!<br>💾 🖥️ ⚙️ 🏆</div>`}};upd();
+
+(function(){const b=document.getElementById('fs'),d=document.documentElement;if(!(d.requestFullscreen||d.webkitRequestFullscreen))return;b.hidden=false;
+ const isF=()=>document.fullscreenElement||document.webkitFullscreenElement;
+ b.onclick=()=>{try{if(isF()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{const p=(d.requestFullscreen||d.webkitRequestFullscreen).call(d);if(p&&p.catch)p.catch(()=>note("Η πλήρης οθόνη δεν επιτρέπεται μέσα σε αυτή τη σελίδα. Άνοιξε το φύλλο απευθείας από τη διεύθυνσή του."))}}catch(e){note("Η πλήρης οθόνη δεν είναι διαθέσιμη εδώ.")}};
+ const u=()=>{b.textContent=isF()?'✖ Έξοδος από πλήρη οθόνη':'⛶ Πλήρης οθόνη'};document.addEventListener('fullscreenchange',u);document.addEventListener('webkitfullscreenchange',u)})();
+</script>
+
+</body></html>
